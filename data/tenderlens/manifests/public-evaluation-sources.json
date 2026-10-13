@@ -1,0 +1,54 @@
+{
+  "version": "public-evaluation-1",
+  "rights_note": "Publicly accessible source PDFs; redistribution rights not established. Keep bytes out of Git.",
+  "sources": [
+    {
+      "id": "montenegro-rfp",
+      "case": "montenegro",
+      "url": "https://www.unicef.org/montenegro/en/media/26051/file",
+      "local_path": "data/tenderlens/raw/unicef-montenegro-lrps-2026-9202732.pdf",
+      "sha256": "f64e41551ec6bd0287373ca0d1d3fef7edd1ff2da10e660c3be18b60069a8e2d",
+      "pages": 2
+    },
+    {
+      "id": "serbia-rfp",
+      "case": "serbia",
+      "url": "https://www.unicef.org/serbia/media/29961/file",
+      "local_path": "data/tenderlens/raw/unicef-serbia-lrps-2026-9202334.pdf",
+      "sha256": "74289db628a6cbf4eeaeacb9922741d8bdb0ab8f0fa9b7d957160be773965703",
+      "pages": 29
+    },
+    {
+      "id": "nepal-rfp",
+      "case": "nepal",
+      "url": "https://www.unicef.org/nepal/media/30911/file/LRPS_2026_9205846.pdf.pdf",
+      "local_path": "data/tenderlens/raw/unicef-nepal-lrps-2026-9205846.pdf",
+      "sha256": "1c999e282a174522e8a93159b89cc6fb51ae70e8d53b5732556365415a1e8b6f",
+      "pages": 36
+    },
+    {
+      "id": "nepal-tor",
+      "case": "nepal",
+      "url": "https://www.unicef.org/nepal/media/30916/file/Terms%20of%20Reference%20%28TOR%29.pdf.pdf",
+      "local_path": "data/tenderlens/raw/unicef-nepal-terms-of-reference.pdf",
+      "sha256": "8849969f25ee72a4c58180914c22e1e5032742ced892f2009f8e8341940bc5e7",
+      "pages": 27
+    },
+    {
+      "id": "nepal-evaluation",
+      "case": "nepal",
+      "url": "https://www.unicef.org/nepal/media/30921/file/Annex%20C-%20Technical%20Evaluation%20Criteria.pdf.pdf",
+      "local_path": "data/tenderlens/raw/unicef-nepal-annex-c-evaluation.pdf",
+      "sha256": "8eda3a80584b7373a1188c5dfb1a12e242d88d485fbcc4aacab09c81f1682a77",
+      "pages": 2
+    },
+    {
+      "id": "nepal-price",
+      "case": "nepal",
+      "url": "https://www.unicef.org/nepal/media/30926/file/Annex%20D%20-%20Price%20Schedule.pdf.pdf",
+      "local_path": "data/tenderlens/raw/unicef-nepal-annex-d-price.pdf",
+      "sha256": "fcbbf2d9066d1d2c462980be04c6155fb75a9a30cae3f442f84e82ac1eee58ae",
+      "pages": 2
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "dataset_version": "seed-1",
+  "document_id": "unicef-montenegro-lrps-2026-9202732",
+  "document_sha256": "f64e41551ec6bd0287373ca0d1d3fef7edd1ff2da10e660c3be18b60069a8e2d",
+  "run_date": "2026-10-12",
+  "codex_cli_version": "0.160.0",
+  "result": {
+    "status": "draft",
+    "elapsed_seconds": 79.2,
+    "claim_count": 21,
+    "validation_failure_count": 0,
+    "contains_70_point_criterion": true,
+    "contains_2_references": true
+  },
+  "limits": "One real public PDF, two sanity checks, no human gold labels. First attempt had a provider process failure; the repeat succeeded. This is not a quality benchmark."
+}

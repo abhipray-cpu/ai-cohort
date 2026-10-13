@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# JavaScript
+node_modules/
+.next/
+dist/
+*.tsbuildinfo
+tmp/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Application data and logs
+var/
+logs/
+data/**/uploads/
+data/**/runs/
+data/**/raw/*.pdf
+
+# Windows
+Thumbs.db
+Desktop.ini

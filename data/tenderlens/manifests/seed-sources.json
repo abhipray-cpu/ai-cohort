@@ -1,0 +1,14 @@
+{
+  "version": "seed-1",
+  "sources": [
+    {
+      "id": "unicef-montenegro-lrps-2026-9202732",
+      "url": "https://www.unicef.org/montenegro/en/media/26051/file",
+      "local_path": "data/tenderlens/raw/unicef-montenegro-lrps-2026-9202732.pdf",
+      "sha256": "f64e41551ec6bd0287373ca0d1d3fef7edd1ff2da10e660c3be18b60069a8e2d",
+      "pages": 2,
+      "rights": "Publicly accessible; redistribution rights not established. Keep PDF out of Git.",
+      "status": "downloaded locally; human gold labeling pending"
+    }
+  ]
+}
