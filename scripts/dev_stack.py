@@ -20,6 +20,27 @@ COMMANDS = {
     "api": ["-m", "uvicorn", "tenderlens_api.api:app_from_env", "--factory"],
     "worker": ["-m", "tenderlens_api.worker"],
 }
+PRODUCT = "TenderLens"
+PREFIX = "TENDERLENS"
+DEFAULT_PORT = "8000"
+WEB_APP = "tenderlens-web"
+
+
+def configure(product: str) -> None:
+    global STATE_DIR, STATE_FILE, COMMANDS, PRODUCT, PREFIX, DEFAULT_PORT, WEB_APP
+    if product == "resolvedesk":
+        PRODUCT, PREFIX, DEFAULT_PORT, WEB_APP = (
+            "ResolveDesk",
+            "RESOLVEDESK",
+            "8001",
+            "resolvedesk-web",
+        )
+        STATE_DIR = ROOT / "var" / "resolvedesk-dev"
+        STATE_FILE = STATE_DIR / "processes.json"
+        COMMANDS = {
+            "api": ["-m", "uvicorn", "resolvedesk_api.api:app_from_env", "--factory"],
+            "worker": ["-m", "resolvedesk_api.worker"],
+        }
 
 
 def environment() -> dict[str, str]:
@@ -46,7 +67,9 @@ def process_matches(pid: int, role: str) -> bool:
     try:
         if os.name == "nt":
             command = [
-                "powershell", "-NoProfile", "-Command",
+                "powershell",
+                "-NoProfile",
+                "-Command",
                 f"(Get-CimInstance Win32_Process -Filter 'ProcessId = {pid}').CommandLine",
             ]
         else:
@@ -78,7 +101,7 @@ def stop_process(pid: int, role: str) -> None:
 def down() -> None:
     state = read_state()
     if not state:
-        print("TenderLens is not running under this launcher")
+        print(f"{PRODUCT} is not running under this launcher")
         return
     for role in ("worker", "api"):
         if role in state:
@@ -97,16 +120,23 @@ def healthy(port: int) -> bool:
 def up() -> None:
     existing = read_state()
     if any(process_matches(pid, role) for role, pid in existing.items()):
-        raise RuntimeError("TenderLens is already running; use make down first")
+        raise RuntimeError(f"{PRODUCT} is already running; stop its managed stack first")
     env = environment()
-    if not env.get("TENDERLENS_USERNAME") or env.get("TENDERLENS_PASSWORD") in (
-        None, "", "replace-me"
+    if PREFIX == "RESOLVEDESK":
+        # Same-team development convenience; explicit product settings always win.
+        for suffix in ("USERNAME", "PASSWORD"):
+            if not env.get(f"RESOLVEDESK_{suffix}") and env.get(f"TENDERLENS_{suffix}"):
+                env[f"RESOLVEDESK_{suffix}"] = env[f"TENDERLENS_{suffix}"]
+    if not env.get(f"{PREFIX}_USERNAME") or env.get(f"{PREFIX}_PASSWORD") in (
+        None,
+        "",
+        "replace-me",
     ):
-        raise RuntimeError("Set TENDERLENS_USERNAME and a real TENDERLENS_PASSWORD in .env")
-    if not (ROOT / "apps/tenderlens-web/dist/index.html").exists():
-        raise RuntimeError("Web build missing; run npm --prefix apps/tenderlens-web run build")
-    host = env.get("TENDERLENS_HOST", "127.0.0.1")
-    port = int(env.get("TENDERLENS_PORT", "8000"))
+        raise RuntimeError(f"Set {PREFIX}_USERNAME and a real {PREFIX}_PASSWORD in .env")
+    if not (ROOT / "apps" / WEB_APP / "dist/index.html").exists():
+        raise RuntimeError(f"Web build missing; run npm --prefix apps/{WEB_APP} run build")
+    host = env.get(f"{PREFIX}_HOST", "127.0.0.1")
+    port = int(env.get(f"{PREFIX}_PORT", DEFAULT_PORT))
     if host != "127.0.0.1":
         raise RuntimeError("Development launcher only binds to 127.0.0.1")
     if healthy(port):
@@ -137,7 +167,7 @@ def up() -> None:
             STATE_FILE.write_text(json.dumps(started), encoding="utf-8")
         for _ in range(50):
             if healthy(port):
-                print(f"TenderLens is ready at http://127.0.0.1:{port}/")
+                print(f"{PRODUCT} is ready at http://127.0.0.1:{port}/")
                 print(f"Logs: {STATE_DIR}")
                 return
             if any(process.poll() is not None for process in processes.values()):
@@ -148,9 +178,7 @@ def up() -> None:
         for process in reversed(list(processes.values())):
             if process.poll() is None:
                 if os.name == "nt":
-                    subprocess.run(
-                        ["taskkill", "/PID", str(process.pid), "/T", "/F"], check=False
-                    )
+                    subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"], check=False)
                 else:
                     os.killpg(process.pid, signal.SIGTERM)
         STATE_FILE.unlink(missing_ok=True)
@@ -158,9 +186,12 @@ def up() -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description="Manage a product's local API and worker")
+    parser.add_argument("--product", choices=("tenderlens", "resolvedesk"), default="tenderlens")
     parser.add_argument("action", choices=("up", "down", "status"))
-    action = parser.parse_args().action
+    args = parser.parse_args()
+    configure(args.product)
+    action = args.action
     if action == "up":
         up()
     elif action == "down":

@@ -5,4 +5,6 @@ credentials-file: C:/Users/REPLACE_ME/.cloudflared/REPLACE_WITH_TUNNEL_ID.json
 ingress:
   - hostname: tenderlens.example.com
     service: http://127.0.0.1:8000
+  - hostname: resolvedesk.example.com
+    service: http://127.0.0.1:8001
   - service: http_status:404

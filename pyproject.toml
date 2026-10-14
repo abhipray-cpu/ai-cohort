@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ai-cohort"
 version = "0.1.0"
-description = "Shared platform and TenderLens product"
+description = "Shared platform, TenderLens, and ResolveDesk products"
 requires-python = ">=3.12"
 dependencies = [
   "fastapi>=0.115,<1",
@@ -19,10 +19,11 @@ dependencies = [
 dev = ["httpx>=0.28,<1", "pytest>=8,<10", "ruff>=0.9,<1"]
 
 [tool.setuptools.packages.find]
-where = ["apps/tenderlens-api/src", "packages/agent-core/src", "packages/contracts/src", "packages/observability/src"]
+where = ["apps/tenderlens-api/src", "apps/resolvedesk-api/src", "packages/agent-core/src", "packages/contracts/src", "packages/observability/src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["apps/resolvedesk-api/src"]
 
 [tool.ruff]
 line-length = 100
@@ -30,3 +31,4 @@ target-version = "py312"
 
 [tool.ruff.lint.per-file-ignores]
 "apps/tenderlens-api/src/tenderlens_api/api.py" = ["B008"]
+"apps/resolvedesk-api/src/resolvedesk_api/api.py" = ["B008"]

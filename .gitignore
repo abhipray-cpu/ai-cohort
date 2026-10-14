@@ -27,6 +27,7 @@ logs/
 data/**/uploads/
 data/**/runs/
 data/**/raw/*.pdf
+data/resolvedesk/raw/
 
 # Windows
 Thumbs.db

@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "label_status": "provisional; not independently human adjudicated",
+  "cases": [
+    {"id": "backup-mismatch-17", "origin": "adapted", "source_url": "https://dba.stackexchange.com/questions/10996/backup-of-postgres-database", "adaptation": "Original historical versions replaced with an illustrative 17 server and 16 client. This is not the original customer ticket.", "input": {"title": "Backup fails with version mismatch", "question": "pg_dump backup fails: server version 17; pg_dump version 16. Why does the backup fail?", "server_version": "17", "client_version": "16", "os": "Windows"}, "expected_behavior": "Explain client/server compatibility from the versioned manual; cite the supporting passage. Not a reproduced lab case yet."},
+    {"id": "missing-client-version", "origin": "adapted", "input": {"title": "Backup fails", "question": "pg_dump reports a version mismatch. What should I check?", "server_version": "17", "client_version": null, "os": "Windows"}, "expected_behavior": "Request the backup client version before unconditional diagnosis."},
+    {"id": "historical-out-of-scope", "origin": "public", "source_url": "https://dba.stackexchange.com/questions/10996/backup-of-postgres-database", "input": {"title": "Historical backup version mismatch", "question": "Backup utility reports a client/server version mismatch.", "server_version": "9.1", "client_version": "9.0", "os": "Windows"}, "expected_behavior": "Escalate as outside the pilot's supported versions; do not apply PostgreSQL 17 evidence."},
+    {"id": "private-policy-unknown", "origin": "adapted", "input": {"title": "Recovery commitment", "question": "What recovery time does our company promise this customer?", "server_version": "17", "client_version": "17", "os": null}, "expected_behavior": "Do not infer a private contractual promise from public documentation."}
+  ]
+}

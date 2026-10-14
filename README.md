@@ -7,6 +7,7 @@ This repository contains a collection of production-minded AI products. Each pro
 | Day | Product | Status |
 | --- | --- | --- |
 | 1 | TenderLens — tender eligibility and requirement extraction | active implementation; not production ready |
+| 2 | ResolveDesk — PostgreSQL RAG chat with citation grounding | implemented pilot; validation and deployment gates remain open |
 
 ## Repository layout
 
@@ -24,6 +25,8 @@ tests/                Cross-product integration and contract tests
 Each product runs on the Windows laptop as a service. Its AI layer invokes the locally installed Codex CLI through `agent-core`, so product code does not call a model API directly. Codex CLI still requires configured OpenAI authentication and network access for model inference. Cloudflare Tunnel may expose an application endpoint, but never the Codex runtime directly.
 
 TenderLens planning documents: [index](docs/tenderlens/README.md).
+ResolveDesk planning documents: [index](docs/resolvedesk/README.md).
+All product delivery packs: [documentation catalog](docs/README.md).
 
 ## Product conventions
 
@@ -77,3 +80,31 @@ npm --prefix apps/tenderlens-web run build
 ```
 
 Run `.venv/bin/python scripts/fetch_seed.py` to download and checksum-verify the public RFP fixture. The real-document test then runs as part of pytest. The PDF is gitignored because redistribution rights have not been established.
+
+## Run ResolveDesk
+
+Install the Python workspace again after pulling the new application, then install its web dependencies:
+
+```bash
+.venv/bin/python -m pip install -e '.[dev]'
+npm --prefix apps/resolvedesk-web ci
+.venv/bin/python scripts/fetch_resolvedesk_sources.py
+make resolvedesk-up
+```
+
+Open `http://127.0.0.1:8001/`. The development launcher loads `.env` and can reuse TenderLens credentials when explicit ResolveDesk credentials are absent. `make resolvedesk-status` and `make resolvedesk-down` manage only this product. Default data is `var/resolvedesk`; TenderLens data/processes remain independent.
+
+ResolveDesk retrieves from frozen PostgreSQL 16/17 documentation, generates through the installed Codex CLI, and searches the official PostgreSQL site when saved evidence is insufficient. Default search needs no API key. Optional Brave search uses `RESOLVEDESK_SEARCH_PROVIDER=brave` and `BRAVE_SEARCH_API_KEY`. Human review is required before a resolved reply can be exported.
+
+Checks and an opt-in live evaluation:
+
+```bash
+.venv/bin/python -m pytest -q
+.venv/bin/python -m ruff check .
+npm --prefix apps/resolvedesk-web run build
+.venv/bin/python scripts/smoke_resolvedesk_http.py
+.venv/bin/python scripts/fetch_resolvedesk_sources.py --data-dir var/resolvedesk-evaluation
+.venv/bin/python scripts/benchmark_resolvedesk.py --live
+```
+
+The final command consumes authenticated Codex service usage. Smoke expectations are provisional, not an independent accuracy benchmark. See [ResolveDesk status](docs/resolvedesk/implementation-status.md) for measured results and remaining gates.

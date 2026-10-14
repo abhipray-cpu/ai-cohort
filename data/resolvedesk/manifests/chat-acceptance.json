@@ -1,0 +1,152 @@
+{
+  "schema_version": "1.0",
+  "label_status": "provisional functional expectations; not independent human gold",
+  "cases": [
+    {
+      "id": "backup-followup",
+      "origin": "adapted",
+      "mode": "indexed",
+      "environment": { "server_version": "17", "client_version": "16" },
+      "turns": [
+        {
+          "message": "Can pg_dump 16 back up a PostgreSQL 17 server? Explain the version compatibility rule.",
+          "expect": "answer",
+          "required_page": "app-pgdump.html",
+          "required_quote": "newer than its own major version"
+        },
+        {
+          "message": "Does that rule also apply to 16? Please cite version 16 documentation.",
+          "expect": "answer",
+          "required_page": "app-pgdump.html",
+          "required_version": "16",
+          "required_quote": "newer than its own major version"
+        }
+      ]
+    },
+    {
+      "id": "restore-custom",
+      "origin": "adapted",
+      "mode": "indexed",
+      "turns": [
+        {
+          "message": "In PostgreSQL 17, which utility restores a custom-format pg_dump archive, and can pg_restore select which objects to restore?",
+          "expect": "answer",
+          "required_page": "app-pgrestore.html",
+          "required_version": "17"
+        }
+      ]
+    },
+    {
+      "id": "connection-security",
+      "origin": "adapted",
+      "mode": "indexed",
+      "turns": [
+        {
+          "message": "In PostgreSQL 17 libpq, what is the difference between sslmode require and verify-full? Does require verify the server host name?",
+          "expect": "answer",
+          "required_page": "libpq-connect.html",
+          "required_version": "17"
+        }
+      ]
+    },
+    {
+      "id": "upgrade-check",
+      "origin": "adapted",
+      "mode": "indexed",
+      "turns": [
+        {
+          "message": "In the PostgreSQL 17 pg_upgrade documentation, what does --check do? Does it change the data or just check compatibility?",
+          "expect": "answer",
+          "required_page": "pgupgrade.html",
+          "required_version": "17"
+        }
+      ]
+    },
+    {
+      "id": "general-no-environment",
+      "origin": "adapted",
+      "mode": "indexed",
+      "turns": [
+        {
+          "message": "What is pg_dump used for? I am asking a general documentation question, not diagnosing a specific server.",
+          "expect": "answer",
+          "required_page": "app-pgdump.html"
+        }
+      ]
+    },
+    {
+      "id": "private-policy",
+      "origin": "adapted",
+      "mode": "indexed",
+      "turns": [
+        {
+          "message": "What exact recovery time in minutes does our private customer contract promise? No contract or company runbook has been provided.",
+          "expect": "uncertain"
+        }
+      ]
+    },
+    {
+      "id": "ambiguous-followup",
+      "origin": "adapted",
+      "mode": "indexed",
+      "turns": [
+        {
+          "message": "It failed again. What should I do?",
+          "expect": "clarification"
+        }
+      ]
+    },
+    {
+      "id": "historical-out-of-scope",
+      "origin": "adapted",
+      "mode": "indexed",
+      "environment": { "server_version": "9.1", "client_version": "9.0" },
+      "turns": [
+        {
+          "message": "My PostgreSQL 9.0 pg_dump cannot back up the PostgreSQL 9.1 server. Why?",
+          "expect": "uncertain"
+        }
+      ]
+    },
+    {
+      "id": "live-search-recovery",
+      "origin": "adapted",
+      "mode": "empty-live-search",
+      "environment": { "server_version": "17", "client_version": "16" },
+      "turns": [
+        {
+          "message": "Can pg_dump 16 back up a PostgreSQL 17 server? Explain the documented compatibility constraint.",
+          "expect": "search-answer",
+          "required_page": "app-pgdump.html",
+          "allowed_versions": ["16", "17"],
+          "required_quote": "newer than its own major version"
+        }
+      ]
+    },
+    {
+      "id": "weak-local-search",
+      "origin": "adapted",
+      "mode": "indexed",
+      "turns": [
+        {
+          "message": "In PostgreSQL 17 pg_hba.conf (hba authentication), if authentication fails on the first matching record, does the server try later matching records? Cite the actual matching rule.",
+          "expect": "search-answer",
+          "required_page": "auth-pg-hba-conf.html",
+          "required_version": "17",
+          "search_after_generation": true
+        }
+      ]
+    },
+    {
+      "id": "search-outage",
+      "origin": "adapted fault injection",
+      "mode": "empty-search-outage",
+      "turns": [
+        {
+          "message": "What does PostgreSQL 17 pg_dump do?",
+          "expect": "uncertain"
+        }
+      ]
+    }
+  ]
+}

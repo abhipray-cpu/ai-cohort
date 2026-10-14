@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "id": "pg16-app-pg-dumpall",
+      "url": "https://www.postgresql.org/docs/16/app-pg-dumpall.html",
+      "version": "16",
+      "sha256": "0e40145ed755e379d897d39408ec7492298f7c5c8692ded39242ad38237ff123",
+      "local_path": "data/resolvedesk/raw/pg16-app-pg-dumpall.html",
+      "captured_at": "2026-10-13T17:07:34.090475+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg16-app-pgdump",
+      "url": "https://www.postgresql.org/docs/16/app-pgdump.html",
+      "version": "16",
+      "sha256": "6889cb4686b6bef13c67a05c5f43abd937d51024d1bf2e048f4ca7e8bdd3a907",
+      "local_path": "data/resolvedesk/raw/pg16-app-pgdump.html",
+      "captured_at": "2026-10-13T17:07:30.104365+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg16-app-pgrestore",
+      "url": "https://www.postgresql.org/docs/16/app-pgrestore.html",
+      "version": "16",
+      "sha256": "caf6f9ad5be24ea5285bb8bde836e8eaaf791cefb3264336e51a78faee4336c3",
+      "local_path": "data/resolvedesk/raw/pg16-app-pgrestore.html",
+      "captured_at": "2026-10-13T17:07:33.084613+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg16-backup",
+      "url": "https://www.postgresql.org/docs/16/backup.html",
+      "version": "16",
+      "sha256": "97a5820eeed9de04bbd184fa7a65b8fcb5c047e1a9041891f3141a503df25b84",
+      "local_path": "data/resolvedesk/raw/pg16-backup.html",
+      "captured_at": "2026-10-13T17:07:38.373464+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg16-client-authentication",
+      "url": "https://www.postgresql.org/docs/16/client-authentication.html",
+      "version": "16",
+      "sha256": "55bbbd0cf7865fca8f07954f0cf90898a197ab31040f6c42c2c0815a0a2d72b0",
+      "local_path": "data/resolvedesk/raw/pg16-client-authentication.html",
+      "captured_at": "2026-10-13T17:07:37.305622+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg16-libpq-connect",
+      "url": "https://www.postgresql.org/docs/16/libpq-connect.html",
+      "version": "16",
+      "sha256": "cf4305d2c0fdbdc707b43da449ff126514bfcf35597864f5c478728480d476ce",
+      "local_path": "data/resolvedesk/raw/pg16-libpq-connect.html",
+      "captured_at": "2026-10-13T17:07:36.311486+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg16-pgupgrade",
+      "url": "https://www.postgresql.org/docs/16/pgupgrade.html",
+      "version": "16",
+      "sha256": "1454a2d964875afdd9e48745d4d93c7a66989c159b281731c11b8c5df5a1c18d",
+      "local_path": "data/resolvedesk/raw/pg16-pgupgrade.html",
+      "captured_at": "2026-10-13T17:07:35.113249+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg16-upgrading",
+      "url": "https://www.postgresql.org/docs/16/upgrading.html",
+      "version": "16",
+      "sha256": "952a3e4b5000ab9dc40addc33b8f6e23aa0474251e91097802941b90c7986949",
+      "local_path": "data/resolvedesk/raw/pg16-upgrading.html",
+      "captured_at": "2026-10-13T17:07:39.308276+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg17-app-pg-dumpall",
+      "url": "https://www.postgresql.org/docs/17/app-pg-dumpall.html",
+      "version": "17",
+      "sha256": "1eaf97af34773932db5bef78f1b125c03fc2277350dd42c25c57f5324acfee43",
+      "local_path": "data/resolvedesk/raw/pg17-app-pg-dumpall.html",
+      "captured_at": "2026-10-13T17:07:40.396830+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg17-app-pgdump",
+      "url": "https://www.postgresql.org/docs/17/app-pgdump.html",
+      "version": "17",
+      "sha256": "86ed21f3ee24d84a5feabf332271741f9ba7834fb3c02d2168e0d5a085327296",
+      "local_path": "data/resolvedesk/raw/pg17-app-pgdump.html",
+      "captured_at": "2026-10-13T17:01:24.139082+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg17-app-pgrestore",
+      "url": "https://www.postgresql.org/docs/17/app-pgrestore.html",
+      "version": "17",
+      "sha256": "60f984268c6c0cf023437852015cdd01f1714b88252d113a773cb41b2f4237dc",
+      "local_path": "data/resolvedesk/raw/pg17-app-pgrestore.html",
+      "captured_at": "2026-10-13T17:01:31.255330+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg17-backup",
+      "url": "https://www.postgresql.org/docs/17/backup.html",
+      "version": "17",
+      "sha256": "7b89f9261a6c952b51467baeaa8b92213c2556a7b6c1118f60eb51732358a566",
+      "local_path": "data/resolvedesk/raw/pg17-backup.html",
+      "captured_at": "2026-10-13T17:07:42.453847+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg17-client-authentication",
+      "url": "https://www.postgresql.org/docs/17/client-authentication.html",
+      "version": "17",
+      "sha256": "d24d035b0bbfccd4e717c7691fb1f83c24a20e8d7a5f9095d55d56b984a91ee2",
+      "local_path": "data/resolvedesk/raw/pg17-client-authentication.html",
+      "captured_at": "2026-10-13T17:07:41.511425+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg17-libpq-connect",
+      "url": "https://www.postgresql.org/docs/17/libpq-connect.html",
+      "version": "17",
+      "sha256": "deeab96a835803fd7fbf93576e06354b3ecba39050860a2512a59d131cba30f9",
+      "local_path": "data/resolvedesk/raw/pg17-libpq-connect.html",
+      "captured_at": "2026-10-13T17:01:33.704891+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg17-pgupgrade",
+      "url": "https://www.postgresql.org/docs/17/pgupgrade.html",
+      "version": "17",
+      "sha256": "84d28a90802ab7a9b3309f17c6300cd5a2ddf3ea157a6bf3bb9ca87cdf676851",
+      "local_path": "data/resolvedesk/raw/pg17-pgupgrade.html",
+      "captured_at": "2026-10-13T17:01:32.450429+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    },
+    {
+      "id": "pg17-upgrading",
+      "url": "https://www.postgresql.org/docs/17/upgrading.html",
+      "version": "17",
+      "sha256": "b3544cbab674dcc64150f31801ff5c861571f269a3e87bc8ba82c0ac7a2a80c8",
+      "local_path": "data/resolvedesk/raw/pg17-upgrading.html",
+      "captured_at": "2026-10-13T17:07:43.469299+00:00",
+      "license": "PostgreSQL License; preserve notices",
+      "license_url": "https://www.postgresql.org/about/licence/"
+    }
+  ]
+}
