@@ -8,6 +8,7 @@ This repository contains a collection of production-minded AI products. Each pro
 | --- | --- | --- |
 | 1 | TenderLens — tender eligibility and requirement extraction | active implementation; not production ready |
 | 2 | ResolveDesk — PostgreSQL RAG chat with citation grounding | implemented pilot; validation and deployment gates remain open |
+| 3 | PropertyBrief — property investigation and diligence planning | implemented pilot; actual-data validation and release gates documented |
 
 ## Repository layout
 
@@ -26,6 +27,7 @@ Each product runs on the Windows laptop as a service. Its AI layer invokes the l
 
 TenderLens planning documents: [index](docs/tenderlens/README.md).
 ResolveDesk planning documents: [index](docs/resolvedesk/README.md).
+PropertyBrief planning documents: [index](docs/propertybrief/README.md).
 All product delivery packs: [documentation catalog](docs/README.md).
 
 ## Product conventions
@@ -108,3 +110,25 @@ npm --prefix apps/resolvedesk-web run build
 ```
 
 The final command consumes authenticated Codex service usage. Smoke expectations are provisional, not an independent accuracy benchmark. See [ResolveDesk status](docs/resolvedesk/implementation-status.md) for measured results and remaining gates.
+
+## Run PropertyBrief
+
+```bash
+.venv/bin/python -m pip install -e '.[dev]'
+npm --prefix apps/propertybrief-web ci
+make propertybrief-up
+```
+
+Open `http://127.0.0.1:8002/`. Development startup loads `.env` and reuses TenderLens credentials if explicit PropertyBrief credentials are absent. `make propertybrief-status` and `make propertybrief-down` manage only PropertyBrief. Windows startup services require explicit product credentials; see [operations](docs/propertybrief/operations.md).
+
+PropertyBrief investigates confirmed NYC building identities using eight official HPD/DOB record sources. Its conversational, application-controlled ReAct worker produces cited findings and seller/inspector/attorney follow-ups, with bounded actions, self-critique and durable partial results. A reviewed pack is exportable as Markdown or JSON. It is not title research, a safety assessment or investment clearance.
+
+```bash
+make propertybrief-test
+.venv/bin/python scripts/fetch_propertybrief_sources.py var/propertybrief-corpus/new-capture --count 12
+.venv/bin/python scripts/validate_propertybrief.py --corpus var/propertybrief-corpus/new-capture --all
+# Opt-in actual model run; consumes authenticated Codex usage:
+.venv/bin/python scripts/validate_propertybrief.py --corpus var/propertybrief-corpus/new-capture --live --case 375411
+```
+
+See the [PropertyBrief delivery pack](docs/propertybrief/README.md) for measured validation, limitations and learning material. Raw source captures and local evaluation databases remain gitignored.

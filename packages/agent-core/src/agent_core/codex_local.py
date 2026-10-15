@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import os
+import signal
 import subprocess
 import tempfile
 import time
@@ -36,10 +38,55 @@ class LocalCodexProvider:
         command: str = "codex",
         timeout_seconds: int = 180,
         max_output_bytes: int = 1_000_000,
+        config_overrides: tuple[str, ...] = (),
+        isolated: bool = False,
     ):
         self.command = command
         self.timeout_seconds = timeout_seconds
         self.max_output_bytes = max_output_bytes
+        self.config_overrides = config_overrides
+        self.isolated = isolated
+
+    def _run(self, args, prompt):
+        if not self.isolated:
+            return subprocess.run(
+                args,
+                input=prompt,
+                capture_output=True,
+                text=True,
+                shell=False,
+                timeout=self.timeout_seconds,
+                check=False,
+            )
+        process = subprocess.Popen(
+            args,
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            shell=False,
+            start_new_session=os.name != "nt",
+            creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if os.name == "nt" else 0,
+        )
+        try:
+            stdout, stderr = process.communicate(input=prompt, timeout=self.timeout_seconds)
+            return subprocess.CompletedProcess(args, process.returncode, stdout, stderr)
+        except BaseException:
+            if process.poll() is None:
+                try:
+                    if os.name == "nt":
+                        subprocess.run(
+                            ["taskkill", "/PID", str(process.pid), "/T", "/F"],
+                            capture_output=True,
+                            timeout=5,
+                            check=False,
+                        )
+                    else:
+                        os.killpg(process.pid, signal.SIGKILL)
+                except (OSError, subprocess.TimeoutExpired):
+                    process.kill()
+                process.wait(timeout=5)
+            raise
 
     def generate(self, *, prompt: str, schema: dict[str, object]) -> StructuredGeneration:
         with tempfile.TemporaryDirectory(prefix="tenderlens-codex-") as temporary:
@@ -64,17 +111,13 @@ class LocalCodexProvider:
                 str(answer_path),
                 "-",
             ]
+            for override in self.config_overrides:
+                args[2:2] = ["-c", override]
+            if self.isolated:
+                args.insert(-1, "--json")
             started = time.monotonic()
             try:
-                completed = subprocess.run(
-                    args,
-                    input=prompt,
-                    capture_output=True,
-                    text=True,
-                    shell=False,
-                    timeout=self.timeout_seconds,
-                    check=False,
-                )
+                completed = self._run(args, prompt)
             except subprocess.TimeoutExpired as error:
                 raise ProviderTimeoutError("Codex invocation timed out") from error
             except OSError as error:
@@ -87,6 +130,23 @@ class LocalCodexProvider:
                     elapsed_ms=elapsed_ms,
                     stderr=completed.stderr[-1000:],
                 )
+            if self.isolated:
+                events = []
+                for line in completed.stdout.splitlines():
+                    try:
+                        events.append(json.loads(line))
+                    except json.JSONDecodeError:
+                        continue
+                allowed = {"agent_message", "reasoning", "todo_list", "plan", "error"}
+                if any(
+                    event.get("item") and event["item"].get("type") not in allowed
+                    for event in events
+                ):
+                    raise RuntimeError("Restricted Codex invocation attempted an internal tool")
+                if not any(event.get("type") == "turn.completed" for event in events):
+                    raise RuntimeError(
+                        "Restricted Codex invocation did not complete its audited turn"
+                    )
             if not answer_path.exists():
                 raise RuntimeError("Codex produced no final message file")
             if answer_path.stat().st_size > self.max_output_bytes:
@@ -96,4 +156,5 @@ class LocalCodexProvider:
                 exit_code=0,
                 elapsed_ms=elapsed_ms,
                 stderr=completed.stderr[-1000:],
+                tools_audited=self.isolated,
             )

@@ -18,6 +18,7 @@ class StructuredGeneration(BaseModel):
     exit_code: int
     elapsed_ms: int
     stderr: str = ""
+    tools_audited: bool = False
 
 
 class StructuredProvider(Protocol):

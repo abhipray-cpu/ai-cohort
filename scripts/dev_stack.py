@@ -41,6 +41,19 @@ def configure(product: str) -> None:
             "api": ["-m", "uvicorn", "resolvedesk_api.api:app_from_env", "--factory"],
             "worker": ["-m", "resolvedesk_api.worker"],
         }
+    elif product == "propertybrief":
+        PRODUCT, PREFIX, DEFAULT_PORT, WEB_APP = (
+            "PropertyBrief",
+            "PROPERTYBRIEF",
+            "8002",
+            "propertybrief-web",
+        )
+        STATE_DIR = ROOT / "var" / "propertybrief-dev"
+        STATE_FILE = STATE_DIR / "processes.json"
+        COMMANDS = {
+            "api": ["-m", "uvicorn", "propertybrief_api.api:app_from_env", "--factory"],
+            "worker": ["-m", "propertybrief_api.worker"],
+        }
 
 
 def environment() -> dict[str, str]:
@@ -122,11 +135,11 @@ def up() -> None:
     if any(process_matches(pid, role) for role, pid in existing.items()):
         raise RuntimeError(f"{PRODUCT} is already running; stop its managed stack first")
     env = environment()
-    if PREFIX == "RESOLVEDESK":
+    if PREFIX in ("RESOLVEDESK", "PROPERTYBRIEF"):
         # Same-team development convenience; explicit product settings always win.
         for suffix in ("USERNAME", "PASSWORD"):
-            if not env.get(f"RESOLVEDESK_{suffix}") and env.get(f"TENDERLENS_{suffix}"):
-                env[f"RESOLVEDESK_{suffix}"] = env[f"TENDERLENS_{suffix}"]
+            if not env.get(f"{PREFIX}_{suffix}") and env.get(f"TENDERLENS_{suffix}"):
+                env[f"{PREFIX}_{suffix}"] = env[f"TENDERLENS_{suffix}"]
     if not env.get(f"{PREFIX}_USERNAME") or env.get(f"{PREFIX}_PASSWORD") in (
         None,
         "",
@@ -187,7 +200,9 @@ def up() -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Manage a product's local API and worker")
-    parser.add_argument("--product", choices=("tenderlens", "resolvedesk"), default="tenderlens")
+    parser.add_argument(
+        "--product", choices=("tenderlens", "resolvedesk", "propertybrief"), default="tenderlens"
+    )
     parser.add_argument("action", choices=("up", "down", "status"))
     args = parser.parse_args()
     configure(args.product)

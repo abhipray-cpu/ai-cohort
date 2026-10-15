@@ -49,3 +49,86 @@ def test_pydantic_schema_is_strict_for_codex_without_changing_validation_contrac
     assert claim["additionalProperties"] is False
     assert "default" not in claim["properties"]["status"]
     assert original["$defs"]["Claim"]["required"] == ["kind", "value"]
+
+
+def test_isolated_provider_timeout_cleans_child_process_group(monkeypatch):
+    import os
+    import signal
+
+    captured = {}
+
+    class Child:
+        pid = 43210
+        returncode = None
+
+        def communicate(self, **kwargs):
+            captured["communicate"] = kwargs
+            raise subprocess.TimeoutExpired("codex", 0.1)
+
+        def poll(self):
+            return None
+
+        def kill(self):
+            captured["killed"] = True
+
+        def wait(self, timeout=None):
+            return 0
+
+    def popen(args, **kwargs):
+        captured["options"] = kwargs
+        return Child()
+
+    monkeypatch.setattr(subprocess, "Popen", popen)
+    monkeypatch.setattr(
+        os, "killpg", lambda pid, sig: captured.update(group=(pid, sig)), raising=False
+    )
+    with pytest.raises(ProviderTimeoutError):
+        LocalCodexProvider(timeout_seconds=0.1, isolated=True).generate(
+            prompt="test", schema={"type": "object"}
+        )
+    if os.name != "nt":
+        assert captured["options"]["start_new_session"] is True
+        assert captured["group"] == (43210, signal.SIGKILL)
+
+
+@pytest.mark.parametrize("item_type", ["command_execution", "mcp_tool_call"])
+def test_isolated_provider_rejects_native_tools_even_with_valid_final_json(monkeypatch, item_type):
+    provider = LocalCodexProvider(isolated=True)
+
+    def run(args, prompt):
+        Path(args[args.index("--output-last-message") + 1]).write_text('{"ok":true}')
+        events = [
+            {"type": "item.completed", "item": {"type": item_type}},
+            {"type": "turn.completed"},
+        ]
+        return subprocess.CompletedProcess(args, 0, "\n".join(map(json.dumps, events)), "")
+
+    monkeypatch.setattr(provider, "_run", run)
+    with pytest.raises(RuntimeError, match="internal tool"):
+        provider.generate(prompt="test", schema={"type": "object"})
+
+
+def test_isolated_provider_requires_completed_turn(monkeypatch):
+    provider = LocalCodexProvider(isolated=True)
+    monkeypatch.setattr(
+        provider, "_run", lambda args, _: subprocess.CompletedProcess(args, 0, "", "")
+    )
+    with pytest.raises(RuntimeError, match="audited turn"):
+        provider.generate(prompt="test", schema={"type": "object"})
+
+
+def test_isolated_provider_accepts_audited_tool_free_completion(monkeypatch):
+    provider = LocalCodexProvider(isolated=True, config_overrides=("features.shell_tool=false",))
+
+    def run(args, prompt):
+        assert "--json" in args and "features.shell_tool=false" in args
+        Path(args[args.index("--output-last-message") + 1]).write_text('{"ok":true}')
+        events = [
+            {"type": "item.completed", "item": {"type": "agent_message"}},
+            {"type": "turn.completed"},
+        ]
+        return subprocess.CompletedProcess(args, 0, "\n".join(map(json.dumps, events)), "")
+
+    monkeypatch.setattr(provider, "_run", run)
+    result = provider.generate(prompt="test", schema={"type": "object"})
+    assert result.tools_audited and json.loads(result.text) == {"ok": True}

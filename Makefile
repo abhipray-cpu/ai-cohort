@@ -37,3 +37,24 @@ resolvedesk-test: resolvedesk-build
 # Explicitly invokes real Codex and official-source search; consumes service usage.
 resolvedesk-validate-live:
 	$(PYTHON) scripts/validate_resolvedesk_chat.py --live
+
+.PHONY: propertybrief-build propertybrief-up propertybrief-down propertybrief-status propertybrief-test propertybrief-validate-live
+
+propertybrief-build:
+	npm --prefix apps/propertybrief-web run build
+
+propertybrief-up: propertybrief-build
+	$(PYTHON) scripts/dev_stack.py --product propertybrief up
+
+propertybrief-down:
+	$(PYTHON) scripts/dev_stack.py --product propertybrief down
+
+propertybrief-status:
+	$(PYTHON) scripts/dev_stack.py --product propertybrief status
+
+propertybrief-test: propertybrief-build
+	$(PYTHON) -m pytest tests/test_propertybrief*.py
+	npm --prefix apps/propertybrief-web test
+
+propertybrief-validate-live:
+	$(PYTHON) scripts/validate_propertybrief.py --live

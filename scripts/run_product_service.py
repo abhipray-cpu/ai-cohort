@@ -17,16 +17,20 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("role", choices=("api", "worker"))
+    parser.add_argument(
+        "--product", choices=("resolvedesk", "propertybrief"), default="resolvedesk"
+    )
     args = parser.parse_args()
     env = environment()
-    required = ("RESOLVEDESK_USERNAME", "RESOLVEDESK_PASSWORD")
+    prefix = args.product.upper()
+    required = (f"{prefix}_USERNAME", f"{prefix}_PASSWORD")
     if any(not env.get(key) or env[key] == "replace-me" for key in required):
         raise SystemExit(
-            "Set explicit ResolveDesk service credentials in the service environment or .env"
+            f"Set explicit {args.product} service credentials in the service environment or .env"
         )
-    directory = ROOT / "var/resolvedesk-service"
+    directory = ROOT / f"var/{args.product}-service"
     directory.mkdir(parents=True, exist_ok=True)
-    logger = logging.getLogger("resolvedesk-service")
+    logger = logging.getLogger(f"{args.product}-service")
     logger.setLevel(logging.INFO)
     logger.addHandler(
         RotatingFileHandler(directory / f"{args.role}.log", maxBytes=5_000_000, backupCount=3)
@@ -35,15 +39,15 @@ def main():
     if args.role == "api":
         command += [
             "uvicorn",
-            "resolvedesk_api.api:app_from_env",
+            f"{args.product}_api.api:app_from_env",
             "--factory",
             "--host",
             "127.0.0.1",
             "--port",
-            env.get("RESOLVEDESK_PORT", "8001"),
+            env.get(f"{prefix}_PORT", "8002" if args.product == "propertybrief" else "8001"),
         ]
     else:
-        command += ["resolvedesk_api.worker"]
+        command += [f"{args.product}_api.worker"]
     process = subprocess.Popen(
         command, cwd=ROOT, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
     )
