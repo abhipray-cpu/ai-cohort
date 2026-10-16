@@ -9,4 +9,6 @@ ingress:
     service: http://127.0.0.1:8001
   - hostname: propertybrief.example.com
     service: http://127.0.0.1:8002
+  - hostname: patchdesk.example.com
+    service: http://127.0.0.1:8003
   - service: http_status:404

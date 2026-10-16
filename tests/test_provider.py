@@ -28,6 +28,7 @@ def test_codex_provider_uses_schema_file_and_read_only_sandbox(tmp_path, monkeyp
     assert captured["args"][captured["args"].index("--sandbox") + 1] == "read-only"
     assert captured["kwargs"]["input"] == "Extract"
     assert captured["kwargs"]["shell"] is False
+    assert "env" not in captured["kwargs"]
 
 
 def test_codex_provider_timeout_is_operational_error(monkeypatch):
@@ -132,3 +133,22 @@ def test_isolated_provider_accepts_audited_tool_free_completion(monkeypatch):
     monkeypatch.setattr(provider, "_run", run)
     result = provider.generate(prompt="test", schema={"type": "object"})
     assert result.tools_audited and json.loads(result.text) == {"ok": True}
+
+
+def test_isolated_provider_uses_explicit_environment_without_inheritance(monkeypatch):
+    captured = {}
+
+    class Child:
+        returncode = 0
+
+        def communicate(self, **_):
+            return "", ""
+
+    def popen(_args, **kwargs):
+        captured.update(kwargs)
+        return Child()
+
+    monkeypatch.setenv("PATCHDESK_GITHUB_PUBLISH_TOKEN", "must-not-inherit")
+    monkeypatch.setattr(subprocess, "Popen", popen)
+    LocalCodexProvider(isolated=True, environment={"PATH": "/usr/bin"})._run(["codex"], "test")
+    assert captured["env"] == {"PATH": "/usr/bin"}

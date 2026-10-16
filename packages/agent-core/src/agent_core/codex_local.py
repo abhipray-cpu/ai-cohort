@@ -40,12 +40,14 @@ class LocalCodexProvider:
         max_output_bytes: int = 1_000_000,
         config_overrides: tuple[str, ...] = (),
         isolated: bool = False,
+        environment: dict[str, str] | None = None,
     ):
         self.command = command
         self.timeout_seconds = timeout_seconds
         self.max_output_bytes = max_output_bytes
         self.config_overrides = config_overrides
         self.isolated = isolated
+        self.environment = environment
 
     def _run(self, args, prompt):
         if not self.isolated:
@@ -57,6 +59,7 @@ class LocalCodexProvider:
                 shell=False,
                 timeout=self.timeout_seconds,
                 check=False,
+                **({"env": self.environment} if self.environment is not None else {}),
             )
         process = subprocess.Popen(
             args,
@@ -67,6 +70,7 @@ class LocalCodexProvider:
             shell=False,
             start_new_session=os.name != "nt",
             creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if os.name == "nt" else 0,
+            **({"env": self.environment} if self.environment is not None else {}),
         )
         try:
             stdout, stderr = process.communicate(input=prompt, timeout=self.timeout_seconds)

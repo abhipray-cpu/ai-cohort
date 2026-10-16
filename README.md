@@ -9,6 +9,7 @@ This repository contains a collection of production-minded AI products. Each pro
 | 1 | TenderLens — tender eligibility and requirement extraction | active implementation; not production ready |
 | 2 | ResolveDesk — PostgreSQL RAG chat with citation grounding | implemented pilot; validation and deployment gates remain open |
 | 3 | PropertyBrief — property investigation and diligence planning | implemented pilot; actual-data validation and release gates documented |
+| 4 | PatchDesk — client security-maintenance orchestration | implemented pilot; rigorous validation finds release-blocking coverage/AI gaps |
 
 ## Repository layout
 
@@ -28,6 +29,7 @@ Each product runs on the Windows laptop as a service. Its AI layer invokes the l
 TenderLens planning documents: [index](docs/tenderlens/README.md).
 ResolveDesk planning documents: [index](docs/resolvedesk/README.md).
 PropertyBrief planning documents: [index](docs/propertybrief/README.md).
+PatchDesk planning documents: [index](docs/patchdesk/README.md).
 All product delivery packs: [documentation catalog](docs/README.md).
 
 ## Product conventions

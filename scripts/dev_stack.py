@@ -41,18 +41,18 @@ def configure(product: str) -> None:
             "api": ["-m", "uvicorn", "resolvedesk_api.api:app_from_env", "--factory"],
             "worker": ["-m", "resolvedesk_api.worker"],
         }
-    elif product == "propertybrief":
+    elif product in ("propertybrief", "patchdesk"):
         PRODUCT, PREFIX, DEFAULT_PORT, WEB_APP = (
-            "PropertyBrief",
-            "PROPERTYBRIEF",
-            "8002",
-            "propertybrief-web",
+            "PropertyBrief" if product == "propertybrief" else "PatchDesk",
+            product.upper(),
+            "8002" if product == "propertybrief" else "8003",
+            f"{product}-web",
         )
-        STATE_DIR = ROOT / "var" / "propertybrief-dev"
+        STATE_DIR = ROOT / "var" / f"{product}-dev"
         STATE_FILE = STATE_DIR / "processes.json"
         COMMANDS = {
-            "api": ["-m", "uvicorn", "propertybrief_api.api:app_from_env", "--factory"],
-            "worker": ["-m", "propertybrief_api.worker"],
+            "api": ["-m", "uvicorn", f"{product}_api.api:app_from_env", "--factory"],
+            "worker": ["-m", f"{product}_api.worker"],
         }
 
 
@@ -135,7 +135,7 @@ def up() -> None:
     if any(process_matches(pid, role) for role, pid in existing.items()):
         raise RuntimeError(f"{PRODUCT} is already running; stop its managed stack first")
     env = environment()
-    if PREFIX in ("RESOLVEDESK", "PROPERTYBRIEF"):
+    if PREFIX in ("RESOLVEDESK", "PROPERTYBRIEF", "PATCHDESK"):
         # Same-team development convenience; explicit product settings always win.
         for suffix in ("USERNAME", "PASSWORD"):
             if not env.get(f"{PREFIX}_{suffix}") and env.get(f"TENDERLENS_{suffix}"):
@@ -201,7 +201,9 @@ def up() -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Manage a product's local API and worker")
     parser.add_argument(
-        "--product", choices=("tenderlens", "resolvedesk", "propertybrief"), default="tenderlens"
+        "--product",
+        choices=("tenderlens", "resolvedesk", "propertybrief", "patchdesk"),
+        default="tenderlens",
     )
     parser.add_argument("action", choices=("up", "down", "status"))
     args = parser.parse_args()

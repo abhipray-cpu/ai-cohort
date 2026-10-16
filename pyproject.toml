@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ai-cohort"
 version = "0.1.0"
-description = "Shared platform, TenderLens, ResolveDesk, and PropertyBrief products"
+description = "Shared platform and AI Cohort products"
 requires-python = ">=3.12"
 dependencies = [
   "fastapi>=0.115,<1",
@@ -13,17 +13,18 @@ dependencies = [
   "pymupdf>=1.25,<2",
   "python-multipart>=0.0.20,<1",
   "uvicorn>=0.34,<1",
+  "semantic-version>=2.10,<3",
 ]
 
 [project.optional-dependencies]
 dev = ["httpx>=0.28,<1", "pytest>=8,<10", "ruff>=0.9,<1"]
 
 [tool.setuptools.packages.find]
-where = ["apps/tenderlens-api/src", "apps/resolvedesk-api/src", "apps/propertybrief-api/src", "packages/agent-core/src", "packages/contracts/src", "packages/observability/src"]
+where = ["apps/tenderlens-api/src", "apps/resolvedesk-api/src", "apps/propertybrief-api/src", "apps/patchdesk-api/src", "packages/agent-core/src", "packages/contracts/src", "packages/observability/src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["apps/resolvedesk-api/src", "apps/propertybrief-api/src"]
+pythonpath = ["apps/resolvedesk-api/src", "apps/propertybrief-api/src", "apps/patchdesk-api/src"]
 
 [tool.ruff]
 line-length = 100
@@ -33,3 +34,4 @@ target-version = "py312"
 "apps/tenderlens-api/src/tenderlens_api/api.py" = ["B008"]
 "apps/resolvedesk-api/src/resolvedesk_api/api.py" = ["B008"]
 "apps/propertybrief-api/src/propertybrief_api/api.py" = ["B008"]
+"apps/patchdesk-api/src/patchdesk_api/api.py" = ["B008"]

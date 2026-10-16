@@ -58,3 +58,24 @@ propertybrief-test: propertybrief-build
 
 propertybrief-validate-live:
 	$(PYTHON) scripts/validate_propertybrief.py --live
+
+.PHONY: patchdesk-build patchdesk-up patchdesk-down patchdesk-status patchdesk-test patchdesk-validate-live
+
+patchdesk-build:
+	npm --prefix apps/patchdesk-web run build
+
+patchdesk-up: patchdesk-build
+	$(PYTHON) scripts/dev_stack.py --product patchdesk up
+
+patchdesk-down:
+	$(PYTHON) scripts/dev_stack.py --product patchdesk down
+
+patchdesk-status:
+	$(PYTHON) scripts/dev_stack.py --product patchdesk status
+
+patchdesk-test: patchdesk-build
+	$(PYTHON) -m pytest tests/test_patchdesk*.py -q
+	npm --prefix apps/patchdesk-web test
+
+patchdesk-validate-live:
+	$(PYTHON) scripts/validate_patchdesk.py --live
