@@ -109,3 +109,32 @@ ACCEPTANCE_AUDIT ?= var/validation/relaydesk-corrective-audit-v3.json
 # Use a new output path for each run; never overwrite failed acceptance artifacts.
 relaydesk-acceptance:
 	$(PYTHON) scripts/accept_relaydesk.py --output "$(ACCEPTANCE_OUTPUT)" --audit "$(ACCEPTANCE_AUDIT)" --run-tests
+
+.PHONY: clausegate-build clausegate-up clausegate-down clausegate-status clausegate-test clausegate-capture clausegate-validate clausegate-acceptance
+CLAUSEGATE_CORPUS ?= var/validation/clausegate-corpus-v2
+CLAUSEGATE_OUTPUT ?= var/validation/clausegate-validation
+
+clausegate-build:
+	npm --prefix apps/clausegate-web run build
+
+clausegate-up: clausegate-build
+	$(PYTHON) scripts/dev_stack.py --product clausegate up
+
+clausegate-down:
+	$(PYTHON) scripts/dev_stack.py --product clausegate down
+
+clausegate-status:
+	$(PYTHON) scripts/dev_stack.py --product clausegate status
+
+clausegate-test: clausegate-build
+	$(PYTHON) -m pytest tests/test_clausegate*.py -q
+	npm --prefix apps/clausegate-web test
+
+clausegate-capture:
+	$(PYTHON) scripts/capture_clausegate_corpus.py --output "$(CLAUSEGATE_CORPUS)"
+
+clausegate-validate:
+	$(PYTHON) scripts/validate_clausegate.py --corpus "$(CLAUSEGATE_CORPUS)" --output "$(CLAUSEGATE_OUTPUT)"
+
+clausegate-acceptance:
+	$(PYTHON) scripts/accept_clausegate.py --evidence "$(CLAUSEGATE_OUTPUT)/report.json" --output "$(CLAUSEGATE_OUTPUT)/acceptance" --run-tests

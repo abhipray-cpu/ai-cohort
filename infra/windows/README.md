@@ -7,3 +7,14 @@ RelayDesk has additive `install-relaydesk.ps1` startup-task packaging, port 8004
 `install-resolvedesk.ps1` packages ResolveDesk as two Task Scheduler startup tasks (API and worker), under an explicit limited account. It refuses to replace existing tasks and requires the Python workspace and web build to exist. The service runner loads explicit product credentials and rotates its role logs.
 
 This packaging has not been accepted on the target Windows laptop. It is not an SCM service installer and does not provision Codex auth, ACLs, DNS, or Cloudflare Access. Follow the [ResolveDesk operations runbook](../../docs/resolvedesk/operations.md) and validate reboot, child-process shutdown, auth, and restore before remote use. No script exposes Codex through the tunnel.
+# ClauseGate (Day 6)
+
+`install-clausegate.ps1 -RepoPath <repo> -Credential <limited-account> [-Start]`
+adds separate API/worker startup tasks on loopback 8005, refusing existing tasks.
+Build its web app and install the Python workspace first. Configure explicit
+`CLAUSEGATE_USERNAME/PASSWORD` and the installed Codex identity under that account;
+no CLI authentication is copied from another user. No embedding model is required.
+Protect `var/clausegate` and the independent `var/clausegate-authority` store with
+the service ACLs. Restore is quarantined and requires fresh operator/reviewer grants.
+These are Task Scheduler packages, not actual Windows acceptance results.
+See `docs/clausegate/implementation-and-operations.md` for current commands and limits.

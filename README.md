@@ -11,6 +11,7 @@ This repository contains a collection of production-minded AI products. Each pro
 | 3 | PropertyBrief — property investigation and diligence planning | implemented pilot; actual-data validation and release gates documented |
 | 4 | PatchDesk — client security-maintenance orchestration | implemented pilot; rigorous validation finds release-blocking coverage/AI gaps |
 | 5 | RelayDesk — persistent technical escalation memory | Corrective-tested pilot; 89 real threads/6,680 non-bot messages, 283 tests; full release acceptance incomplete |
+| 6 | ClauseGate — human-in-the-loop NDA exception approval | Implemented pilot; 61/61 development analyses, 346 tests, workflow/recovery checks pass; semantic/release gates remain blocked |
 
 ## Repository layout
 
@@ -33,6 +34,8 @@ PropertyBrief planning documents: [index](docs/propertybrief/README.md).
 PatchDesk planning documents: [index](docs/patchdesk/README.md).
 RelayDesk: [docs](docs/relaydesk/README.md), [runbook](docs/relaydesk/implementation-and-operations.md), [corrective validation](docs/relaydesk/corrective-validation-2026-10-17.md), [study guide](docs/relaydesk/study-guide.md), [blog drafts](docs/relaydesk/blog.md). Start/stop: `make relaydesk-up` / `make relaydesk-down` (port 8004).
 All product delivery packs: [documentation catalog](docs/README.md).
+
+ClauseGate Day 6: [docs](docs/clausegate/README.md), [runbook](docs/clausegate/implementation-and-operations.md), [complete development evaluation](docs/clausegate/development-validation-2026-10-17.md), [study guide](docs/clausegate/study-guide.md), [blog](docs/clausegate/blog.md). Start/stop: `make clausegate-up` / `make clausegate-down` (port 8005). Independent final review is mandatory; not production/legal-quality accepted.
 
 ## Product conventions
 

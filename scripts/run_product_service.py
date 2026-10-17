@@ -19,7 +19,7 @@ def main():
     parser.add_argument("role", choices=("api", "worker"))
     parser.add_argument(
         "--product",
-        choices=("resolvedesk", "propertybrief", "patchdesk", "relaydesk"),
+        choices=("resolvedesk", "propertybrief", "patchdesk", "relaydesk", "clausegate"),
         default="resolvedesk",
     )
     args = parser.parse_args()
@@ -53,6 +53,7 @@ def main():
                     "patchdesk": "8003",
                     "resolvedesk": "8001",
                     "relaydesk": "8004",
+                    "clausegate": "8005",
                 }[args.product],
             ),
         ]
