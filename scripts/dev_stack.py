@@ -41,11 +41,13 @@ def configure(product: str) -> None:
             "api": ["-m", "uvicorn", "resolvedesk_api.api:app_from_env", "--factory"],
             "worker": ["-m", "resolvedesk_api.worker"],
         }
-    elif product in ("propertybrief", "patchdesk"):
+    elif product in ("propertybrief", "patchdesk", "relaydesk"):
         PRODUCT, PREFIX, DEFAULT_PORT, WEB_APP = (
-            "PropertyBrief" if product == "propertybrief" else "PatchDesk",
+            {"propertybrief": "PropertyBrief", "patchdesk": "PatchDesk", "relaydesk": "RelayDesk"}[
+                product
+            ],
             product.upper(),
-            "8002" if product == "propertybrief" else "8003",
+            {"propertybrief": "8002", "patchdesk": "8003", "relaydesk": "8004"}[product],
             f"{product}-web",
         )
         STATE_DIR = ROOT / "var" / f"{product}-dev"
@@ -135,7 +137,7 @@ def up() -> None:
     if any(process_matches(pid, role) for role, pid in existing.items()):
         raise RuntimeError(f"{PRODUCT} is already running; stop its managed stack first")
     env = environment()
-    if PREFIX in ("RESOLVEDESK", "PROPERTYBRIEF", "PATCHDESK"):
+    if PREFIX in ("RESOLVEDESK", "PROPERTYBRIEF", "PATCHDESK", "RELAYDESK"):
         # Same-team development convenience; explicit product settings always win.
         for suffix in ("USERNAME", "PASSWORD"):
             if not env.get(f"{PREFIX}_{suffix}") and env.get(f"TENDERLENS_{suffix}"):
@@ -202,7 +204,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Manage a product's local API and worker")
     parser.add_argument(
         "--product",
-        choices=("tenderlens", "resolvedesk", "propertybrief", "patchdesk"),
+        choices=("tenderlens", "resolvedesk", "propertybrief", "patchdesk", "relaydesk"),
         default="tenderlens",
     )
     parser.add_argument("action", choices=("up", "down", "status"))

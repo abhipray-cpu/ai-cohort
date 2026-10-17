@@ -14,17 +14,21 @@ dependencies = [
   "python-multipart>=0.0.20,<1",
   "uvicorn>=0.34,<1",
   "semantic-version>=2.10,<3",
+  "numpy>=2,<3",
+  "onnxruntime>=1.20,<2",
+  "tokenizers>=0.21,<1",
+  "huggingface-hub>=0.30,<2",
 ]
 
 [project.optional-dependencies]
 dev = ["httpx>=0.28,<1", "pytest>=8,<10", "ruff>=0.9,<1"]
 
 [tool.setuptools.packages.find]
-where = ["apps/tenderlens-api/src", "apps/resolvedesk-api/src", "apps/propertybrief-api/src", "apps/patchdesk-api/src", "packages/agent-core/src", "packages/contracts/src", "packages/observability/src"]
+where = ["apps/tenderlens-api/src", "apps/resolvedesk-api/src", "apps/propertybrief-api/src", "apps/patchdesk-api/src", "apps/relaydesk-api/src", "packages/agent-core/src", "packages/contracts/src", "packages/observability/src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["apps/resolvedesk-api/src", "apps/propertybrief-api/src", "apps/patchdesk-api/src"]
+pythonpath = ["apps/resolvedesk-api/src", "apps/propertybrief-api/src", "apps/patchdesk-api/src", "apps/relaydesk-api/src"]
 
 [tool.ruff]
 line-length = 100
@@ -35,3 +39,4 @@ target-version = "py312"
 "apps/resolvedesk-api/src/resolvedesk_api/api.py" = ["B008"]
 "apps/propertybrief-api/src/propertybrief_api/api.py" = ["B008"]
 "apps/patchdesk-api/src/patchdesk_api/api.py" = ["B008"]
+"apps/relaydesk-api/src/relaydesk_api/api.py" = ["B008"]

@@ -79,3 +79,33 @@ patchdesk-test: patchdesk-build
 
 patchdesk-validate-live:
 	$(PYTHON) scripts/validate_patchdesk.py --live
+
+.PHONY: relaydesk-build relaydesk-up relaydesk-down relaydesk-status relaydesk-test relaydesk-model
+
+relaydesk-build:
+	npm --prefix apps/relaydesk-web run build
+
+relaydesk-up: relaydesk-build
+	$(PYTHON) scripts/dev_stack.py --product relaydesk up
+
+relaydesk-down:
+	$(PYTHON) scripts/dev_stack.py --product relaydesk down
+
+relaydesk-status:
+	$(PYTHON) scripts/dev_stack.py --product relaydesk status
+
+relaydesk-model:
+	$(PYTHON) scripts/provision_relaydesk_model.py
+
+relaydesk-test: relaydesk-build
+	$(PYTHON) -m pytest tests/test_relaydesk*.py -q
+	npm --prefix apps/relaydesk-web test
+
+.PHONY: relaydesk-acceptance
+ACCEPTANCE_OUTPUT ?= var/validation/relaydesk-acceptance
+ACCEPTANCE_AUDIT ?= var/validation/relaydesk-corrective-audit-v3.json
+
+# Intentionally nonzero until every mandatory gate has real passing evidence.
+# Use a new output path for each run; never overwrite failed acceptance artifacts.
+relaydesk-acceptance:
+	$(PYTHON) scripts/accept_relaydesk.py --output "$(ACCEPTANCE_OUTPUT)" --audit "$(ACCEPTANCE_AUDIT)" --run-tests

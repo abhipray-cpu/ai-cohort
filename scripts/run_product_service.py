@@ -18,7 +18,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("role", choices=("api", "worker"))
     parser.add_argument(
-        "--product", choices=("resolvedesk", "propertybrief", "patchdesk"), default="resolvedesk"
+        "--product",
+        choices=("resolvedesk", "propertybrief", "patchdesk", "relaydesk"),
+        default="resolvedesk",
     )
     args = parser.parse_args()
     env = environment()
@@ -46,7 +48,12 @@ def main():
             "--port",
             env.get(
                 f"{prefix}_PORT",
-                {"propertybrief": "8002", "patchdesk": "8003", "resolvedesk": "8001"}[args.product],
+                {
+                    "propertybrief": "8002",
+                    "patchdesk": "8003",
+                    "resolvedesk": "8001",
+                    "relaydesk": "8004",
+                }[args.product],
             ),
         ]
     else:

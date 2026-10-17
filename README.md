@@ -10,6 +10,7 @@ This repository contains a collection of production-minded AI products. Each pro
 | 2 | ResolveDesk — PostgreSQL RAG chat with citation grounding | implemented pilot; validation and deployment gates remain open |
 | 3 | PropertyBrief — property investigation and diligence planning | implemented pilot; actual-data validation and release gates documented |
 | 4 | PatchDesk — client security-maintenance orchestration | implemented pilot; rigorous validation finds release-blocking coverage/AI gaps |
+| 5 | RelayDesk — persistent technical escalation memory | Corrective-tested pilot; 89 real threads/6,680 non-bot messages, 283 tests; full release acceptance incomplete |
 
 ## Repository layout
 
@@ -30,6 +31,7 @@ TenderLens planning documents: [index](docs/tenderlens/README.md).
 ResolveDesk planning documents: [index](docs/resolvedesk/README.md).
 PropertyBrief planning documents: [index](docs/propertybrief/README.md).
 PatchDesk planning documents: [index](docs/patchdesk/README.md).
+RelayDesk: [docs](docs/relaydesk/README.md), [runbook](docs/relaydesk/implementation-and-operations.md), [corrective validation](docs/relaydesk/corrective-validation-2026-10-17.md), [study guide](docs/relaydesk/study-guide.md), [blog drafts](docs/relaydesk/blog.md). Start/stop: `make relaydesk-up` / `make relaydesk-down` (port 8004).
 All product delivery packs: [documentation catalog](docs/README.md).
 
 ## Product conventions
