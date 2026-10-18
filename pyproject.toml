@@ -24,11 +24,14 @@ dependencies = [
 dev = ["httpx>=0.28,<1", "pytest>=8,<10", "ruff>=0.9,<1"]
 
 [tool.setuptools.packages.find]
-where = ["apps/tenderlens-api/src", "apps/resolvedesk-api/src", "apps/propertybrief-api/src", "apps/patchdesk-api/src", "apps/relaydesk-api/src", "apps/clausegate-api/src", "packages/agent-core/src", "packages/contracts/src", "packages/observability/src"]
+where = ["apps/tenderlens-api/src", "apps/resolvedesk-api/src", "apps/propertybrief-api/src", "apps/patchdesk-api/src", "apps/relaydesk-api/src", "apps/clausegate-api/src", "apps/catalogbridge-api/src", "packages/agent-core/src", "packages/contracts/src", "packages/observability/src"]
+
+[tool.setuptools.package-data]
+catalogbridge_api = ["classifier_instructions.txt"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["apps/resolvedesk-api/src", "apps/propertybrief-api/src", "apps/patchdesk-api/src", "apps/relaydesk-api/src", "apps/clausegate-api/src"]
+pythonpath = ["apps/resolvedesk-api/src", "apps/propertybrief-api/src", "apps/patchdesk-api/src", "apps/relaydesk-api/src", "apps/clausegate-api/src", "apps/catalogbridge-api/src"]
 
 [tool.ruff]
 line-length = 100

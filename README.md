@@ -12,6 +12,7 @@ This repository contains a collection of production-minded AI products. Each pro
 | 4 | PatchDesk — client security-maintenance orchestration | implemented pilot; rigorous validation finds release-blocking coverage/AI gaps |
 | 5 | RelayDesk — persistent technical escalation memory | Corrective-tested pilot; 89 real threads/6,680 non-bot messages, 283 tests; full release acceptance incomplete |
 | 6 | ClauseGate — human-in-the-loop NDA exception approval | Implemented pilot; 61/61 development analyses, 346 tests, workflow/recovery checks pass; semantic/release gates remain blocked |
+| 7 | CatalogBridge — cost-aware supplier catalog matching | Local draft router implemented; 476 tests; live comparison quota-stopped; savings/confidence and full acceptance remain blocked |
 
 ## Repository layout
 
@@ -34,6 +35,12 @@ PropertyBrief planning documents: [index](docs/propertybrief/README.md).
 PatchDesk planning documents: [index](docs/patchdesk/README.md).
 RelayDesk: [docs](docs/relaydesk/README.md), [runbook](docs/relaydesk/implementation-and-operations.md), [corrective validation](docs/relaydesk/corrective-validation-2026-10-17.md), [study guide](docs/relaydesk/study-guide.md), [blog drafts](docs/relaydesk/blog.md). Start/stop: `make relaydesk-up` / `make relaydesk-down` (port 8004).
 All product delivery packs: [documentation catalog](docs/README.md).
+
+CatalogBridge Day 7: [delivery pack](docs/catalogbridge/README.md), [actual runbook](docs/catalogbridge/implementation-and-operations.md), [implementation evidence](docs/catalogbridge/implementation-validation-2026-10-17.md), [real-data evaluation](docs/catalogbridge/data-and-evaluation.md). Start/stop: `make catalogbridge-up` / `make catalogbridge-down` (port 8006; explicit credentials). Advisory token mode only; full acceptance remains blocked.
+
+Latest: [CatalogBridge local-routing validation](docs/catalogbridge/local-routing-validation-2026-10-18.md): opt-in local review-draft scorer, 476 Python tests and eight web tests/build. The live comparison stopped on quota after 123 calls, with three new unknown liabilities and no eligible savings result. [Study guide](docs/catalogbridge/study-guide.md) and [blog](docs/catalogbridge/blog.md) document implementation and measured limits. Historical [receipt/cache evidence](docs/catalogbridge/receipts-and-repeat-work-2026-10-18.md) and [240-call hardening phase](docs/catalogbridge/runtime-hardening-2026-10-18.md) remain separate.
+
+18 October: [fresh real-data validation](docs/catalogbridge/fresh-real-data-validation-2026-10-18.md), 60 new pairs/400 query IDs, 98% retrieval, 416 tests. Original unknown-liability failures remain recorded; the successful bounded replay does not clear release gates.
 
 ClauseGate Day 6: [docs](docs/clausegate/README.md), [runbook](docs/clausegate/implementation-and-operations.md), [complete development evaluation](docs/clausegate/development-validation-2026-10-17.md), [study guide](docs/clausegate/study-guide.md), [blog](docs/clausegate/blog.md). Start/stop: `make clausegate-up` / `make clausegate-down` (port 8005). Independent final review is mandatory; not production/legal-quality accepted.
 

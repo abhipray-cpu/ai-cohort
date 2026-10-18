@@ -1,3 +1,28 @@
+.PHONY: catalogbridge-build catalogbridge-up catalogbridge-down catalogbridge-status catalogbridge-test catalogbridge-validate catalogbridge-acceptance
+
+catalogbridge-build:
+	npm --prefix apps/catalogbridge-web run build
+
+catalogbridge-up: catalogbridge-build
+	$(PYTHON) scripts/dev_stack.py --product catalogbridge up
+
+catalogbridge-down:
+	$(PYTHON) scripts/dev_stack.py --product catalogbridge down
+
+catalogbridge-status:
+	$(PYTHON) scripts/dev_stack.py --product catalogbridge status
+
+catalogbridge-test: catalogbridge-build
+	$(PYTHON) -m pytest tests/test_catalogbridge*.py -q
+	npm --prefix apps/catalogbridge-web test
+
+# Validation is explicit and bounded; use --live only when service usage is authorized.
+catalogbridge-validate:
+	$(PYTHON) scripts/validate_catalogbridge.py $(CATALOGBRIDGE_VALIDATION_ARGS)
+
+catalogbridge-acceptance:
+	$(PYTHON) scripts/accept_catalogbridge.py
+
 ifeq ($(OS),Windows_NT)
 PYTHON ?= .venv/Scripts/python.exe
 else

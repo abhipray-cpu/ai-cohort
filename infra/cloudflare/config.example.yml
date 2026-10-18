@@ -15,4 +15,7 @@ ingress:
     service: http://127.0.0.1:8004
   - hostname: clausegate.example.com
     service: http://127.0.0.1:8005
+  # Configure Cloudflare Access separately; ingress alone is not authorization.
+  - hostname: catalogbridge.example.com
+    service: http://127.0.0.1:8006
   - service: http_status:404
