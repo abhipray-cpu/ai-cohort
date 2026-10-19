@@ -41,7 +41,7 @@ def configure(product: str) -> None:
             "api": ["-m", "uvicorn", "resolvedesk_api.api:app_from_env", "--factory"],
             "worker": ["-m", "resolvedesk_api.worker"],
         }
-    elif product in ("propertybrief", "patchdesk", "relaydesk", "clausegate", "catalogbridge"):
+    elif product in ("propertybrief", "patchdesk", "relaydesk", "clausegate", "catalogbridge", "buildrelay"):
         PRODUCT, PREFIX, DEFAULT_PORT, WEB_APP = (
             {
                 "propertybrief": "PropertyBrief",
@@ -49,6 +49,7 @@ def configure(product: str) -> None:
                 "relaydesk": "RelayDesk",
                 "clausegate": "ClauseGate",
                 "catalogbridge": "CatalogBridge",
+                "buildrelay": "BuildRelay",
             }[product],
             product.upper(),
             {
@@ -57,6 +58,7 @@ def configure(product: str) -> None:
                 "relaydesk": "8004",
                 "clausegate": "8005",
                 "catalogbridge": "8006",
+                "buildrelay": "8007",
             }[product],
             f"{product}-web",
         )
@@ -222,6 +224,7 @@ def main() -> None:
             "relaydesk",
             "clausegate",
             "catalogbridge",
+            "buildrelay",
         ),
         default="tenderlens",
     )

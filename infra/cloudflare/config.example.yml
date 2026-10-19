@@ -18,4 +18,8 @@ ingress:
   # Configure Cloudflare Access separately; ingress alone is not authorization.
   - hostname: catalogbridge.example.com
     service: http://127.0.0.1:8006
+  # Public HMAC-authenticated webhook path must bypass interactive Access login.
+  # Protect all other paths with Access AND application sessions; do not expose NATS.
+  - hostname: buildrelay.example.com
+    service: http://127.0.0.1:8007
   - service: http_status:404

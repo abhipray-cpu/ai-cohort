@@ -163,3 +163,23 @@ clausegate-validate:
 
 clausegate-acceptance:
 	$(PYTHON) scripts/accept_clausegate.py --evidence "$(CLAUSEGATE_OUTPUT)/report.json" --output "$(CLAUSEGATE_OUTPUT)/acceptance" --run-tests
+
+.PHONY: buildrelay-build buildrelay-up buildrelay-down buildrelay-status buildrelay-test buildrelay-acceptance
+buildrelay-build:
+	npm --prefix apps/buildrelay-web run build
+
+buildrelay-up: buildrelay-build
+	$(PYTHON) scripts/dev_stack.py --product buildrelay up
+
+buildrelay-down:
+	$(PYTHON) scripts/dev_stack.py --product buildrelay down
+
+buildrelay-status:
+	$(PYTHON) scripts/dev_stack.py --product buildrelay status
+
+buildrelay-test: buildrelay-build
+	$(PYTHON) -m pytest tests/test_buildrelay*.py -q
+	npm --prefix apps/buildrelay-web test
+
+buildrelay-acceptance:
+	$(PYTHON) scripts/accept_buildrelay.py $(BUILDRELAY_ACCEPTANCE_ARGS)

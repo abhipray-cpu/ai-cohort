@@ -2,6 +2,8 @@
 
 Products run on the Windows laptop. Keep the Codex executable local and private; applications invoke it through `agent-core`.
 
+BuildRelay (Day 8): `install-buildrelay.ps1 -RepoPath <repo> -Credential <limited account>` packages API/worker startup tasks on loopback 8007. A separately managed authenticated NATS JetStream broker is needed for queue ingress. Packaging does not prove Windows/reboot acceptance or configure Cloudflare's public webhook-path exception. See the [BuildRelay runbook](../../docs/buildrelay/implementation-and-operations.md).
+
 RelayDesk has additive `install-relaydesk.ps1` startup-task packaging, port 8004 and an independent store/erasure ledger. See its [current runbook](../../docs/relaydesk/implementation-and-operations.md). Windows acceptance remains required; packaging alone does not pass reboot, service identity or tunnel checks.
 
 `install-resolvedesk.ps1` packages ResolveDesk as two Task Scheduler startup tasks (API and worker), under an explicit limited account. It refuses to replace existing tasks and requires the Python workspace and web build to exist. The service runner loads explicit product credentials and rotates its role logs.
