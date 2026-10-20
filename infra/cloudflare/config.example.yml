@@ -22,4 +22,7 @@ ingress:
   # Protect all other paths with Access AND application sessions; do not expose NATS.
   - hostname: buildrelay.example.com
     service: http://127.0.0.1:8007
+  # CaseCouncil has NO public webhook exception: Access must protect every path.
+  - hostname: casecouncil.example.com
+    service: http://127.0.0.1:8008
   - service: http_status:404

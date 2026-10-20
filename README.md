@@ -14,6 +14,7 @@ This repository contains a collection of production-minded AI products. Each pro
 | 6 | ClauseGate — human-in-the-loop NDA exception approval | Implemented pilot; 61/61 development analyses, 346 tests, workflow/recovery checks pass; semantic/release gates remain blocked |
 | 7 | CatalogBridge — cost-aware supplier catalog matching | Local draft router implemented; 476 tests; live comparison quota-stopped; savings/confidence and full acceptance remain blocked |
 | 8 | BuildRelay — event-triggered CI failure response | Corrective-tested pilot: 533 tests; lease crash fixed; development anchor retention 90.20%; full acceptance open; study guide/blog available |
+| 9 | CaseCouncil — adversarial insurance-complaint decision review | Implemented engineering pilot; all five debate concepts; real-data permission and browser/Windows acceptance remain open |
 
 ## Repository layout
 
@@ -36,6 +37,8 @@ PropertyBrief planning documents: [index](docs/propertybrief/README.md).
 PatchDesk planning documents: [index](docs/patchdesk/README.md).
 RelayDesk: [docs](docs/relaydesk/README.md), [runbook](docs/relaydesk/implementation-and-operations.md), [corrective validation](docs/relaydesk/corrective-validation-2026-10-17.md), [study guide](docs/relaydesk/study-guide.md), [blog drafts](docs/relaydesk/blog.md). Start/stop: `make relaydesk-up` / `make relaydesk-down` (port 8004).
 All product delivery packs: [documentation catalog](docs/README.md).
+
+CaseCouncil Day 9: [delivery pack](docs/casecouncil/README.md), [implemented runbook](docs/casecouncil/implementation-and-operations.md), [C4 architecture](docs/casecouncil/architecture.md), [verification](docs/casecouncil/implementation-validation-2026-10-19.md), [data/permission gate](docs/casecouncil/data-and-evaluation.md). Use `make casecouncil-up/down/status/test`; actual source clearance, browser and Windows/tunnel acceptance remain open.
 
 BuildRelay Day 8: [delivery pack](docs/buildrelay/README.md), [runbook](docs/buildrelay/implementation-and-operations.md), [corrective validation](docs/buildrelay/fixes-and-validation-2026-10-19.md), [study guide](docs/buildrelay/study-guide.md), [blog](docs/buildrelay/blog.md). Start/stop: `make buildrelay-up` / `make buildrelay-down` (8007; explicit credentials). Real-record HTTP/NATS/Codex replay reran; the lease crash is fixed and development failure-anchor retention reached 90.20% with a larger bounded context. Latest full regression: 533 passed, no skips. Model-quality results and open independent review, browser, live issue-write and Windows/Cloudflare gates are explicit in the report.
 

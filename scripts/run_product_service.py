@@ -27,6 +27,7 @@ def main():
             "clausegate",
             "catalogbridge",
             "buildrelay",
+            "casecouncil",
         ),
         default="resolvedesk",
     )
@@ -64,6 +65,7 @@ def main():
                     "clausegate": "8005",
                     "catalogbridge": "8006",
                     "buildrelay": "8007",
+                    "casecouncil": "8008",
                 }[args.product],
             ),
         ]

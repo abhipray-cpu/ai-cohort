@@ -6,3 +6,5 @@ Every directory in this folder is a separately runnable product. Applications ma
 - `tenderlens-web/`: Day 1 reviewer dashboard.
 - `buildrelay-api/`: Day 8 signed webhook/queue ingress and durable CI response worker.
 - `buildrelay-web/`: Day 8 client-scoped response desk, evidence and dead-letter operations.
+- `casecouncil-api/`: Day 9 scoped complaint review API, durable debate worker and installed-Codex adapter.
+- `casecouncil-web/`: Day 9 evidence, critic, blind votes, dissent and maker/checker review workbench.

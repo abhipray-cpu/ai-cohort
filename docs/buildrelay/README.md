@@ -7,7 +7,9 @@ with optional GitHub issue synchronization. It is not an autonomous code fixer.
 Current status: **corrective-tested pilot; full acceptance incomplete**. All five
 Day 8 concepts have code. The lease-handler crash is fixed; failure-anchor
 retention improved from 58.82% to 90.20% on the known development corpus, using a
-larger bounded evidence allowance. Final regression: 533 passed, no skips. See the
+larger bounded evidence allowance. Fixed-sample lexical citation overlap reached
+73/80 (91.25%), not independently verified causal accuracy. Final regression:
+533 passed, no skips. See the
 corrective report for model-quality outcomes and remaining independent review,
 live external-write, browser and Windows/Cloudflare gates. A green suite is not
 full product acceptance.

@@ -157,8 +157,12 @@ cross-client access checks passed.
 Those were reconstructed deliveries from frozen source records, not native live
 GitHub webhook traffic. Ten thousand duplicates are a transport stress workload,
 not ten thousand independent AI-quality examples. The separate fixed 80-case
-real-model benchmark and its measured quality outcome are documented in the
-[corrective report](fixes-and-validation-2026-10-19.md), alongside preserved failures.
+real-model benchmark completed all 80 cases: all produced valid grounded structures,
+and **73/80 (91.25%)** had lexical citation overlap with the annotated failure chunk,
+up from 57/80 (71.25%) in the failed baseline. One bounded repair brought the new
+campaign to 81 model calls. Seven lexical misses remain. This is not an independently
+verified root-cause accuracy figure. The [corrective report](fixes-and-validation-2026-10-19.md)
+preserves the failures, denominators and remaining acceptance gates.
 
 Running the service on an old Windows laptop is a deployment choice, not an
 offline-inference claim. The installed Codex adapter can depend on an authenticated

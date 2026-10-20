@@ -2,6 +2,12 @@
 
 Products run on the Windows laptop. Keep the Codex executable local and private; applications invoke it through `agent-core`.
 
+CaseCouncil (Day 9): `install-casecouncil.ps1 -RepoPath <repo> -Credential <limited account> [-Start]`
+packages separate API/worker startup tasks on loopback 8008. It refuses existing
+tasks and requires the Python workspace and frontend build. All tunnel paths need
+Access; there is no webhook exception. This is packaging, not Windows/reboot or
+process-isolation acceptance. See the [CaseCouncil runbook](../../docs/casecouncil/implementation-and-operations.md).
+
 BuildRelay (Day 8): `install-buildrelay.ps1 -RepoPath <repo> -Credential <limited account>` packages API/worker startup tasks on loopback 8007. A separately managed authenticated NATS JetStream broker is needed for queue ingress. Packaging does not prove Windows/reboot acceptance or configure Cloudflare's public webhook-path exception. See the [BuildRelay runbook](../../docs/buildrelay/implementation-and-operations.md).
 
 RelayDesk has additive `install-relaydesk.ps1` startup-task packaging, port 8004 and an independent store/erasure ledger. See its [current runbook](../../docs/relaydesk/implementation-and-operations.md). Windows acceptance remains required; packaging alone does not pass reboot, service identity or tunnel checks.

@@ -98,9 +98,51 @@ file change during the run. The frozen final module SHA-256 is
 
 ## Real-model and transport campaigns
 
-The fixed 80-case interpretation campaign and the 36-record GitHub HTTP/NATS replay
-are running through the installed Codex adapter. Final results are appended only
-after their completion. No live GitHub issue writes are enabled.
+Both campaigns completed through the installed Codex adapter. No live GitHub issue
+writes were enabled.
+
+| Measure | Failed baseline | Corrective campaign |
+| --- | ---: | ---: |
+| Fixed real-log cases completed | 80 / 80 | 80 / 80 |
+| Valid nonfallback schema/exact-citation results | 80 / 80 | 80 / 80 |
+| Lexical overlap with annotated failure chunk | 57 / 80 (71.25%) | **73 / 80 (91.25%)** |
+| Interpretation model calls | 80 | 81 (one bounded repair) |
+
+The >=95% nonfallback, 100% exact-citation and >=90% lexical-overlap development
+targets pass. The thresholds and case IDs were not changed after the results.
+The campaign took 441.15 seconds and did not stop for a runtime/quota error. Seven
+lexical misses remain; a grounded but different visible failure can miss this proxy.
+This is not 91.25% independently verified diagnosis accuracy or a calibrated
+probability of correctness. No independent causal/next-step acceptance was performed.
+
+The native replay completed in 253.26 seconds, using 22 more actual model calls:
+
+- 36 actual records from 12 repositories: 22 available failed-run archives, two
+  genuine unavailable sources and 12 successful controls.
+- 536 signed HTTP requests, 10,000 queue envelopes and 25 malformed inputs;
+  36 canonical events, 10,500 duplicate-ignored audits and 25 rejection audits.
+- Zero broker backlog and zero pending ACKs. All initial canonical events entered
+  via HTTP; queue deliveries stress cross-transport deduplication. Queue-first
+  durable acceptance/redelivery is tested separately in the real-consumer crash test.
+- 34 `done`, two `dead` with the original `github_source_unavailable` codes; no
+  unavailable source was relabeled a successful diagnosis.
+- 22 nonfallback analyses and owned incidents: 19 `needs_triage`, three
+  `investigating`. The partial-evidence confidence cap remained in force.
+- 22 JSON exports, all unapproved drafts. Scoped viewers saw only granted
+  repositories; another client's incident export returned 404.
+
+These are real local TCP/JetStream/model calls against byte-verified source replay,
+not observed native GitHub delivery, live issue writes, a Windows-host test or proof
+that every proposal is causally correct. Different runtimes between campaigns
+must not be interpreted as a controlled performance improvement.
+
+The aggregate report verified all saved canonical event payloads against the frozen
+capture. Across both corrective campaigns there were **103 actual model calls**,
+all with audited tool restrictions and usable usage receipts: 3,360,510 input tokens
+and 36,003 output tokens. Cached input (301,056) is a subset of input, not an extra
+amount to add. Unknown-usage receipts: zero. These are telemetry totals, not an
+invoice or a claimed monetary saving. The prior failed campaign's 102 calls remain
+separate; neither its usage nor its failures were overwritten.
 
 The derived GitHub capture reselects unchanged ZIP archives and verifies every
 source artifact hash before copying. Its manifest records the parent manifest hash
@@ -119,6 +161,8 @@ All raw/model artifacts are local and gitignored under `var/validation/`:
 - `buildrelay-real-e2e-2026-10-19-final/`: actual HTTP/NATS replay and model checkpoints.
 - `buildrelay-faults-2026-10-19-v1.xml`: six-case fault evidence.
 - `buildrelay-rigorous-regression-2026-10-19-final.xml`: 533-test full regression.
+- `buildrelay-real-validation-summary-2026-10-19-final/`: aggregate results,
+  source-payload identity checks, receipts/usage totals and current code hashes.
 
 Use new output directories. Bounded live commands consume model quota:
 
@@ -135,10 +179,15 @@ BUILDRELAY_NATS_BINARY=/absolute/path/to/nats-server BUILDRELAY_PROCESS_TEST=1 .
 Browser interaction, actual Windows sleep/reboot/service behavior, Cloudflare
 deployment and live GitHub issue-write acceptance remain unexecuted here. No owned
 write target was authorized. The prior Browser skill attempt returned no available
-browser; domain tests and a build do not clear that gate. Independent causal and
+browser; a fresh 19 October attempt also returned an empty browser list. Domain
+tests and a build do not clear that gate. Independent causal and
 next-step review also remains outstanding. Neither corpus text overlap nor the
 maintainer's spot checks can be relabeled as that review.
 
 This is still a single-host pilot, not a highly available or production-certified
 deployment. The [study guide](study-guide.md) and [blog](blog.md) explain these
 boundaries as part of the product rather than omitting them for a cleaner story.
+
+The two observed implementation blockers and the measured development selection /
+lexical-citation targets are now addressed. Full product acceptance remains false
+because the independent and target-deployment gates above are still open.

@@ -183,3 +183,23 @@ buildrelay-test: buildrelay-build
 
 buildrelay-acceptance:
 	$(PYTHON) scripts/accept_buildrelay.py $(BUILDRELAY_ACCEPTANCE_ARGS)
+
+.PHONY: casecouncil-build casecouncil-up casecouncil-down casecouncil-status casecouncil-test casecouncil-acceptance
+casecouncil-build:
+	npm --prefix apps/casecouncil-web run build
+
+casecouncil-up: casecouncil-build
+	$(PYTHON) scripts/dev_stack.py --product casecouncil up
+
+casecouncil-down:
+	$(PYTHON) scripts/dev_stack.py --product casecouncil down
+
+casecouncil-status:
+	$(PYTHON) scripts/dev_stack.py --product casecouncil status
+
+casecouncil-test: casecouncil-build
+	$(PYTHON) -m pytest tests/test_casecouncil*.py -q
+	npm --prefix apps/casecouncil-web test
+
+casecouncil-acceptance:
+	$(PYTHON) scripts/accept_casecouncil.py $(CASECOUNCIL_ACCEPTANCE_ARGS)
