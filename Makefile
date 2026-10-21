@@ -203,3 +203,23 @@ casecouncil-test: casecouncil-build
 
 casecouncil-acceptance:
 	$(PYTHON) scripts/accept_casecouncil.py $(CASECOUNCIL_ACCEPTANCE_ARGS)
+
+.PHONY: shelfproof-build shelfproof-up shelfproof-down shelfproof-status shelfproof-test shelfproof-acceptance
+shelfproof-build:
+	npm --prefix apps/shelfproof-web run build
+
+shelfproof-up: shelfproof-build
+	$(PYTHON) scripts/dev_stack.py --product shelfproof up
+
+shelfproof-down:
+	$(PYTHON) scripts/dev_stack.py --product shelfproof down
+
+shelfproof-status:
+	$(PYTHON) scripts/dev_stack.py --product shelfproof status
+
+shelfproof-test: shelfproof-build
+	$(PYTHON) -m pytest tests/test_shelfproof*.py -q
+	npm --prefix apps/shelfproof-web test
+
+shelfproof-acceptance:
+	$(PYTHON) scripts/accept_shelfproof.py $(SHELFPROOF_ACCEPTANCE_ARGS)

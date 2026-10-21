@@ -49,6 +49,7 @@ def configure(product: str) -> None:
         "catalogbridge",
         "buildrelay",
         "casecouncil",
+        "shelfproof",
     ):
         PRODUCT, PREFIX, DEFAULT_PORT, WEB_APP = (
             {
@@ -59,6 +60,7 @@ def configure(product: str) -> None:
                 "catalogbridge": "CatalogBridge",
                 "buildrelay": "BuildRelay",
                 "casecouncil": "CaseCouncil",
+                "shelfproof": "ShelfProof",
             }[product],
             product.upper(),
             {
@@ -69,6 +71,7 @@ def configure(product: str) -> None:
                 "catalogbridge": "8006",
                 "buildrelay": "8007",
                 "casecouncil": "8008",
+                "shelfproof": "8009",
             }[product],
             f"{product}-web",
         )
@@ -236,6 +239,7 @@ def main() -> None:
             "catalogbridge",
             "buildrelay",
             "casecouncil",
+            "shelfproof",
         ),
         default="tenderlens",
     )

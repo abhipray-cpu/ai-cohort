@@ -25,4 +25,8 @@ ingress:
   # CaseCouncil has NO public webhook exception: Access must protect every path.
   - hostname: casecouncil.example.com
     service: http://127.0.0.1:8008
+  # ShelfProof: protect EVERY path with Access; set SHELFPROOF_ORIGIN to the HTTPS hostname.
+  # Deployment acceptance remains pending. No public webhook exception.
+  - hostname: shelfproof.example.com
+    service: http://127.0.0.1:8009
   - service: http_status:404

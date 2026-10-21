@@ -28,6 +28,7 @@ def main():
             "catalogbridge",
             "buildrelay",
             "casecouncil",
+            "shelfproof",
         ),
         default="resolvedesk",
     )
@@ -66,6 +67,7 @@ def main():
                     "catalogbridge": "8006",
                     "buildrelay": "8007",
                     "casecouncil": "8008",
+                    "shelfproof": "8009",
                 }[args.product],
             ),
         ]
