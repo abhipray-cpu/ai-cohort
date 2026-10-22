@@ -29,6 +29,7 @@ def main():
             "buildrelay",
             "casecouncil",
             "shelfproof",
+            "releasefence",
         ),
         default="resolvedesk",
     )
@@ -68,6 +69,7 @@ def main():
                     "buildrelay": "8007",
                     "casecouncil": "8008",
                     "shelfproof": "8009",
+                    "releasefence": "8010",
                 }[args.product],
             ),
         ]

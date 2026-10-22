@@ -1,0 +1,3 @@
+# Optional customer-owned backend; ELv2 hosted/managed-service restrictions apply.
+# Install separately from both ReleaseFence and MLflow.
+arize-phoenix==20.23.0

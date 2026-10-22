@@ -16,6 +16,7 @@ This repository contains a collection of production-minded AI products. Each pro
 | 8 | BuildRelay — event-triggered CI failure response | Corrective-tested pilot: 533 tests; lease crash fixed; development anchor retention 90.20%; full acceptance open; study guide/blog available |
 | 9 | CaseCouncil — adversarial insurance-complaint decision review | Implemented engineering pilot; all five debate concepts; real-data permission and browser/Windows acceptance remain open |
 | 10 | ShelfProof — self-reflecting food-listing review and repair | 785 tests passed; bounded live USDA/Codex run 6/6 review-ready with all five concepts; broader production acceptance pending |
+| 11 | ReleaseFence — production-agent observability and release assurance | Bounded tracing/control and six browser E2E checks pass; larger 200-product live cohort failed (provider failures/Phoenix dead letters); Windows and statistical acceptance open |
 
 ## Repository layout
 
@@ -38,6 +39,8 @@ PropertyBrief planning documents: [index](docs/propertybrief/README.md).
 PatchDesk planning documents: [index](docs/patchdesk/README.md).
 RelayDesk: [docs](docs/relaydesk/README.md), [runbook](docs/relaydesk/implementation-and-operations.md), [corrective validation](docs/relaydesk/corrective-validation-2026-10-17.md), [study guide](docs/relaydesk/study-guide.md), [blog drafts](docs/relaydesk/blog.md). Start/stop: `make relaydesk-up` / `make relaydesk-down` (port 8004).
 All product delivery packs: [documentation catalog](docs/README.md).
+
+ReleaseFence Day 11: [product docs](docs/releasefence/README.md), [implementation/runbook](docs/releasefence/implementation-notes.md), [C4 architecture](docs/releasefence/architecture.md), [TDD evidence](docs/releasefence/tdd-checkpoints.md), [latest OSS validation](docs/releasefence/oss-validation-2026-10-22.md), [status](docs/releasefence/implementation-status.md). Use `make releasefence-up/down/status/test`; explicit PostgreSQL/runtime credentials and separate keys are required. Bounded source/Codex/MLflow/Phoenix checks are not complete browser/Windows/statistical acceptance. The approved 24 live calls are fully spent.
 
 ShelfProof Day 10: [product docs](docs/shelfproof/README.md), [implementation map](docs/shelfproof/implementation-notes.md), [status/evidence](docs/shelfproof/implementation-status.md), [C4 architecture](docs/shelfproof/architecture.md). Use `make shelfproof-up`, `make shelfproof-down`, `make shelfproof-status` and `make shelfproof-test`; explicit ShelfProof credentials are required. Real-data/quality/host acceptance are separate from implementation.
 

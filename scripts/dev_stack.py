@@ -50,6 +50,7 @@ def configure(product: str) -> None:
         "buildrelay",
         "casecouncil",
         "shelfproof",
+        "releasefence",
     ):
         PRODUCT, PREFIX, DEFAULT_PORT, WEB_APP = (
             {
@@ -61,6 +62,7 @@ def configure(product: str) -> None:
                 "buildrelay": "BuildRelay",
                 "casecouncil": "CaseCouncil",
                 "shelfproof": "ShelfProof",
+                "releasefence": "ReleaseFence",
             }[product],
             product.upper(),
             {
@@ -72,6 +74,7 @@ def configure(product: str) -> None:
                 "buildrelay": "8007",
                 "casecouncil": "8008",
                 "shelfproof": "8009",
+                "releasefence": "8010",
             }[product],
             f"{product}-web",
         )
@@ -139,6 +142,10 @@ def stop_process(pid: int, role: str) -> None:
 
 
 def down() -> None:
+    if PREFIX == "RELEASEFENCE":
+        print(
+            "Stopping observer services does not stop customer agents or verify outstanding commands; inspect the recovery desk before shutdown."
+        )
     state = read_state()
     if not state:
         print(f"{PRODUCT} is not running under this launcher")
@@ -173,6 +180,12 @@ def up() -> None:
         "replace-me",
     ):
         raise RuntimeError(f"Set {PREFIX}_USERNAME and a real {PREFIX}_PASSWORD in .env")
+    if PREFIX == "RELEASEFENCE":
+        for key in ("DATABASE_URL", "ENCRYPTION_KEY", "SIGNING_KEY"):
+            if not env.get(f"{PREFIX}_{key}"):
+                raise RuntimeError(
+                    f"Explicit {PREFIX}_{key} required; install PostgreSQL schema before startup"
+                )
     if not (ROOT / "apps" / WEB_APP / "dist/index.html").exists():
         raise RuntimeError(f"Web build missing; run npm --prefix apps/{WEB_APP} run build")
     host = env.get(f"{PREFIX}_HOST", "127.0.0.1")
@@ -240,6 +253,7 @@ def main() -> None:
             "buildrelay",
             "casecouncil",
             "shelfproof",
+            "releasefence",
         ),
         default="tenderlens",
     )

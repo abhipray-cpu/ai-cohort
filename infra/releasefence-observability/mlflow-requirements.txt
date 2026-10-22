@@ -1,0 +1,3 @@
+# Optional upstream backend. Install in a separate service/acceptance virtualenv.
+# Apache-2.0 upstream; retain upstream license/NOTICE when redistributing.
+mlflow[auth]==3.17.2

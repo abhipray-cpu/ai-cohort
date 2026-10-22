@@ -223,3 +223,25 @@ shelfproof-test: shelfproof-build
 
 shelfproof-acceptance:
 	$(PYTHON) scripts/accept_shelfproof.py $(SHELFPROOF_ACCEPTANCE_ARGS)
+
+.PHONY: releasefence-build releasefence-up releasefence-down releasefence-status releasefence-test releasefence-test-browser
+releasefence-build:
+	npm --prefix apps/releasefence-web run build
+
+# Explicit opt-in; requires a frozen corpus and a NEW output directory in the environment.
+# No inference is invoked. Uses isolated owned PostgreSQL/API and a fresh Chrome profile.
+releasefence-test-browser: releasefence-build
+	.venv/bin/python -m pytest -q -s tests/acceptance_releasefence_browser.py
+
+releasefence-up: releasefence-build
+	$(PYTHON) scripts/dev_stack.py --product releasefence up
+
+releasefence-down:
+	$(PYTHON) scripts/dev_stack.py --product releasefence down
+
+releasefence-status:
+	$(PYTHON) scripts/dev_stack.py --product releasefence status
+
+releasefence-test: releasefence-build
+	$(PYTHON) -m pytest tests/test_releasefence*.py -q
+	npm --prefix apps/releasefence-web test
