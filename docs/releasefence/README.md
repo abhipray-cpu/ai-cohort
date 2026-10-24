@@ -67,7 +67,6 @@ not permission to redistribute them or run a commercial hosted clone.
 23. [Latest OSS end-to-end evidence](oss-validation-2026-10-22.md)
 24. [Browser and larger live-cohort follow-up](followup-acceptance-2026-10-22.md)
 25. [Study guide: concepts, code and exercises](study-guide.md)
-26. [Blog: 850 tests passed; the live campaign still failed](blog.md)
 
 The stack is FastAPI/Pydantic, React/TypeScript, PostgreSQL, durable
 workers and a customer-side Python connector/HTTP gateway. It does not require Kubernetes for

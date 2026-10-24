@@ -29,7 +29,6 @@ Read in order:
 
 13. [Implementation validation — 15 October](implementation-validation-2026-10-15.md): regression, actual-data, live service and recovery evidence.
 14. [Study guide](study-guide.md): learn the five concepts through actual code and experiments.
-15. [Single blog draft](blog.md): implementation story, measured evidence and limitations; not externally published.
 16. [Rigorous validation — 16 October](validation-2026-10-16.md): larger cohort, independent semantic oracle, coverage denominators, failed model cases and release decision.
 
 Start locally with `make patchdesk-up`, visit http://127.0.0.1:8003/, and sign in with the configured bootstrap account. Use `make patchdesk-down` to stop. [Runbook](operations.md) covers setup, data validation and credentials without exposing their values.

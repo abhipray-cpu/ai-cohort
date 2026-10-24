@@ -43,7 +43,7 @@ verified signatures. Full evidence lives in the follow-up, not the older counts 
 | Live model | Original grant 24/24 spent. New 200-product grant 239/240 spent; larger campaign failed, 165/200 successful outputs. No model/auth settings changed |
 | Browser/Windows/Cloudflare | Six isolated headless Chrome E2E cases and automated seven-view accessibility checks pass after fixes. Independent/manual review remains open; Windows/tunnel host unavailable |
 | Security/commercial | Review and paid pilot not secured; no certification, customer or SLA claim |
-| Study/blog | [Study guide](study-guide.md) and [blog](blog.md) complete at the measured checkpoint; neither claims full product acceptance |
+| Study guide | [Study guide](study-guide.md) complete at the measured checkpoint; it does not claim full product acceptance |
 
 ## Earlier measured engineering checks (preserved)
 

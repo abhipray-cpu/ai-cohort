@@ -42,4 +42,4 @@ No ACRIS/title, permits, zoning, physical inspection, valuation, repair estimate
 
 Local URL: http://127.0.0.1:8002/. Use `make propertybrief-up`, `make propertybrief-status`, `make propertybrief-down`; Windows alternatives and credentials behavior are in [operations](operations.md).
 
-Learning material follows the completed functional validation stage: [study guide](study-guide.md), [single blog draft](blog.md). These explain actual code and failed/partial behavior, not hypothetical production-quality results.
+Learning material follows the completed functional validation stage: [study guide](study-guide.md). It explains actual code and failed/partial behavior, not hypothetical production-quality results.

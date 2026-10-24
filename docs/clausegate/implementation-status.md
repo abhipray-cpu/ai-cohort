@@ -33,4 +33,4 @@ The browser skill could not connect; discovery returned an empty list. HTTP/buil
 
 Service: `http://127.0.0.1:8005/`; start/stop/status with `make clausegate-up/down/status`. Development bootstrap may reuse existing TenderLens settings when ClauseGate settings are absent; no password was changed. Create a separate reviewer identity and case-scoped capabilities through People before analysis.
 
-Read [current code/runbook](implementation-and-operations.md), [measured validation](implementation-validation-2026-10-17.md), [study guide](study-guide.md) and [single blog draft](blog.md). No external publication/outreach occurred. Original design documents preserve broader targets and are not proof all release gates passed.
+Read [current code/runbook](implementation-and-operations.md), [measured validation](implementation-validation-2026-10-17.md), [study guide](study-guide.md). No external publication/outreach occurred. Original design documents preserve broader targets and are not proof all release gates passed.

@@ -59,7 +59,7 @@ not replaced by API tests. Windows/tunnel deployment has not been performed.
 | Actual model/runtime | Current pass: 6/6 review-ready, 23 audited calls, zero unknowns; campaign: 34/96 spent, original unknown retained; bounded live-workflow gate passed |
 | UI/security/recovery | Workbench/API/recovery implemented and engineering tested; actual browser and independent security review pending |
 | Windows/Cloudflare | Packaging present; no target-host installation or deployment acceptance |
-| Study/blog | [Study guide](study-guide.md) and [blog draft](blog.md) created after the measured bounded live checkpoint; no publication or broader acceptance implied |
+| Study guide | [Study guide](study-guide.md) created after the measured bounded live checkpoint; no publication or broader acceptance implied |
 
 Other products' tests, cases, incidents or grants are not ShelfProof quality evidence
 or model-spend authority. The repository regression checks compatibility; it does

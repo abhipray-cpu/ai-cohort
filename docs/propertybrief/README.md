@@ -29,6 +29,5 @@ Read in order:
 11. [Source feasibility observations](validation-2026-10-14.md): exact sample checks and observed data-quality problems.
 12. [Implementation and real-data validation](validation-2026-10-15.md): tests, corpus, actual model runs, failures, fixes and release limits.
 13. [Study guide](study-guide.md): learn each concept by tracing the actual product code, tests and records.
-14. [Single blog draft](blog.md): the product story, engineering lessons and honest measured outcomes.
 
 Start locally with `make propertybrief-up`, open http://127.0.0.1:8002/, and use the configured credentials. `make propertybrief-status` and `make propertybrief-down` manage only this product. See [operations](operations.md) for Windows alternatives, credentials, backup and deployment acceptance. Implementation-plan targets and commercial/quality thresholds remain acceptance criteria, not measured achievements unless the validation report explicitly says so.

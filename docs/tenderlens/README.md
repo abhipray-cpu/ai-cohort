@@ -15,7 +15,6 @@ Read in order:
 7. [Public-PDF evaluation](public-evaluation-2026-10-12.md) — six real PDFs and the initial long-pack failures.
 8. [Validation follow-up](validation-2026-10-13.md) — checkpoint/retry tests and subsequent live attempts.
 9. [Study guide](study-guide.md) — learn the concepts through product code and exercises.
-10. [Blog article](blog-structured-output-agent.md) — one publishable narrative about the product and findings.
 
 ## Decisions to verify in the first implementation spike
 

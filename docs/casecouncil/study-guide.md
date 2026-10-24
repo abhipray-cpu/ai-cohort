@@ -281,4 +281,4 @@ The last question still needs a matched baseline comparison and independent revi
 Learning the architecture and accepting this delivery checkpoint does not answer it.
 
 Continue with [architecture](architecture.md), [measured continuation](real-data-continuation-2026-10-20.md),
-[incident policy](incident-closure-2026-10-20.md) and the [engineering blog](blog.md).
+and [incident policy](incident-closure-2026-10-20.md).

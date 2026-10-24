@@ -1,6 +1,6 @@
 # ClauseGate: complete development-set validation — 17 October 2026
 
-Verdict: **engineering/integration checks pass; semantic and full-product acceptance remain blocked**. This is the evidence for the final [study guide](study-guide.md) and [single blog draft](blog.md), not a production certificate.
+Verdict: **engineering/integration checks pass; semantic and full-product acceptance remain blocked**. This is the evidence for the final [study guide](study-guide.md), not a production certificate.
 
 ## What ran
 

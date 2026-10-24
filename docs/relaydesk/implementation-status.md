@@ -29,4 +29,4 @@ The 5,000-message numerical target is met, not all cohort requirements. Public s
 
 RelayDesk API and worker were restarted at `http://127.0.0.1:8004/`. Existing passwords are unchanged; prior sessions expired during explicit ledger migration. Original failed runs and a pre-migration snapshot are retained.
 
-Read [corrective validation](corrective-validation-2026-10-17.md), [gate matrix](product-acceptance.md), [current runbook](implementation-and-operations.md), [study guide](study-guide.md), [product blog](blog.md) and [corrective engineering blog](blog-corrective-validation.md). Earlier dated feasibility/initial validation documents remain historical evidence.
+Read [corrective validation](corrective-validation-2026-10-17.md), [gate matrix](product-acceptance.md), [current runbook](implementation-and-operations.md), [study guide](study-guide.md). Earlier dated feasibility/initial validation documents remain historical evidence.

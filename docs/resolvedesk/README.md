@@ -24,6 +24,5 @@ Read in order:
 9. [Implementation status](implementation-status.md): current evidence, open decisions, and release blockers.
 10. [Latest validation](validation-2026-10-14.md): final concept matrix, real failures/fixes, counts and remaining gates.
 11. [Study guide](study-guide.md): understand the concepts by tracing the actual product and tests.
-12. [Blog draft](blog.md): a single evidence-based Day 2 narrative.
 
 Product code: [API/worker](../../apps/resolvedesk-api/README.md), [chat UI](../../apps/resolvedesk-web/README.md), and [data](../../data/resolvedesk/README.md). See [current validation evidence](validation-2026-10-14.md), [earlier observations](validation-2026-10-13.md), and [the actual runbook](operations.md).

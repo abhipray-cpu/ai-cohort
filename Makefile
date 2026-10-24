@@ -245,3 +245,24 @@ releasefence-status:
 releasefence-test: releasefence-build
 	$(PYTHON) -m pytest tests/test_releasefence*.py -q
 	npm --prefix apps/releasefence-web test
+
+.PHONY: repairclaim-test repairclaim-lint repairclaim-build repairclaim-up repairclaim-down repairclaim-status
+# Local tests only; no actual-data acquisition or paid calls.
+repairclaim-build:
+	npm --prefix apps/repairclaim-web run build
+
+repairclaim-test: repairclaim-build
+	$(PYTHON) -m pytest tests/test_repairclaim*.py -q
+	npm --prefix apps/repairclaim-web test
+
+repairclaim-lint:
+	$(PYTHON) -m ruff check packages/contracts/src/contracts/repairclaim.py apps/repairclaim-api tests/test_repairclaim*.py scripts/repairclaim_stack.py scripts/validate_repairclaim.py scripts/repairclaim_public_e2e.py scripts/repairclaim_complaints.py
+
+repairclaim-up: repairclaim-build
+	$(PYTHON) scripts/repairclaim_stack.py up
+
+repairclaim-down:
+	$(PYTHON) scripts/repairclaim_stack.py down
+
+repairclaim-status:
+	$(PYTHON) scripts/repairclaim_stack.py status

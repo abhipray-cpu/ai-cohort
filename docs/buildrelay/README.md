@@ -23,8 +23,6 @@ full product acceptance.
 - [Historical failed real-data baseline](real-data-validation-2026-10-18.md)
 - [Corrective fixes and latest validation](fixes-and-validation-2026-10-19.md)
 - [Study guide: concepts mapped to this product and tests](study-guide.md)
-- [Blog: building an event-triggered response desk](blog.md)
 
 Start/stop: `make buildrelay-up` / `make buildrelay-down`; port 8007. No other
-product's credentials, data, ports or processes are reused. The study guide and
-blog explain measured limits; neither implies full release acceptance.
+product's credentials, data, ports or processes are reused. The study guide explains measured limits; it does not imply full release acceptance.

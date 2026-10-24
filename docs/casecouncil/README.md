@@ -1,6 +1,6 @@
 # CaseCouncil — Day 9 multi-agent review desk
 
-Learning cadence: [study guide](study-guide.md) and [single blog draft](blog.md).
+Learning cadence: [study guide](study-guide.md).
 Prepared at the user's request after acceptance of this delivery checkpoint;
 the recorded browser/domain/Windows release limits remain unchanged.
 

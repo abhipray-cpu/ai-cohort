@@ -6,7 +6,7 @@ Full product acceptance: [current rejected/blocked gate matrix and command](prod
 
 Day 5: memory-enabled conversation agent. Status on **17 October 2026: implemented and corrective-engineering-tested pilot**, not production-certified. Backend, React UI, real CPU semantic vectors, installed Codex adapter, service commands and identity-bound backup/restore are delivered. RelayDesk is a working name, not a cleared trademark.
 
-Start with [implemented architecture/operations and deviations](implementation-and-operations.md), [current validation](corrective-validation-2026-10-17.md), [study guide](study-guide.md), [product blog draft](blog.md) and [corrective engineering blog draft](blog-corrective-validation.md). Earlier specifications remain release targets where they exceed the pilot; they are not proof that those gates passed.
+Start with [implemented architecture/operations and deviations](implementation-and-operations.md), [current validation](corrective-validation-2026-10-17.md), [study guide](study-guide.md). Earlier specifications remain release targets where they exceed the pilot; they are not proof that those gates passed.
 
 Product: an investigation-continuity workspace for B2B technical support teams. The incoming engineer resumes from what is known, attempted, corrected and outstanding—not from a fresh summary that forgets the previous shift. It sits alongside the helpdesk; it does not replace ticketing or autonomously reply to customers.
 
@@ -35,6 +35,5 @@ Read in order:
 12. [Implementation status](implementation-status.md): delivered documentation versus unverified engineering/product gates.
 13. [Source feasibility — 16 October](validation-2026-10-16.md): observed source checks, failures and what they do not validate.
 14. [Study guide](study-guide.md): the six memory-agent concepts correlated with implemented code, tests, exercises and validation limits.
-15. [Blog content](blog.md): the Day 5 product/build story grounded in measured results; the [corrective engineering article](blog-corrective-validation.md) is supplemental.
 
 Run `make relaydesk-up`, `make relaydesk-down`, `make relaydesk-status` and `make relaydesk-test`; first installation/model provisioning is documented in [the current runbook](implementation-and-operations.md). Public issues validate engineering paths, not customer willingness to pay or independent answer quality. Browser/Windows and the larger evaluation cohort remain open.

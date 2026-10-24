@@ -111,4 +111,4 @@ Under `var/validation/`:
 
 The gate runner intentionally exits nonzero: G03 fails full cohort coverage; G06/G07 lack independent answer-quality sign-off; G10 lacks browser access; G11 lacks actual Windows/protected-edge/operational acceptance; G12 lacks consenting-customer usefulness evidence. It does not turn public source availability or a passing suite into paid-product proof.
 
-[Study guide](study-guide.md) correlates the concepts with code/tests. [Product blog](blog.md) and [corrective engineering blog](blog-corrective-validation.md) are drafts grounded in these results.
+[Study guide](study-guide.md) correlates the concepts with code/tests and these measured results.

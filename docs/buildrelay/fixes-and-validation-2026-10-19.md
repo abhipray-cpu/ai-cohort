@@ -185,7 +185,7 @@ next-step review also remains outstanding. Neither corpus text overlap nor the
 maintainer's spot checks can be relabeled as that review.
 
 This is still a single-host pilot, not a highly available or production-certified
-deployment. The [study guide](study-guide.md) and [blog](blog.md) explain these
+deployment. The [study guide](study-guide.md) explains these
 boundaries as part of the product rather than omitting them for a cleaner story.
 
 The two observed implementation blockers and the measured development selection /

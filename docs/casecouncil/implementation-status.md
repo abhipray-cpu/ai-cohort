@@ -86,7 +86,7 @@ interfaces and implementation differences. Preserve failed campaigns and all
 denominators when the authorized real-data phase begins.
 
 The user accepted the current delivery checkpoint and requested the
-[study guide](study-guide.md) and [single blog draft](blog.md). They now document
+[study guide](study-guide.md). It now documents
 measured outcomes, the incident and remaining limits. This is delivery-cadence
 acceptance, not independent domain or target-deployment acceptance. External
 publication, messages, permission requests, outreach and further model campaigns

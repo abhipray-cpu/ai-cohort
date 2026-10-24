@@ -6,7 +6,7 @@ ResolveDesk is an implemented pilot. Scoped actual-document functional validatio
 
 - Final actual-Codex matrix: 11/11 scenarios, 12 chat turns, 16/16 expected-page retrieval checks. All 23 claims and 31 citation references pass structural provenance/version checks. Both empty-index and weak-local-evidence live search recoveries passed. Adapted/provisional inputs, not human gold or reproduced database incidents.
 - Real-data defects reproduced with failing regressions and corrected: multi-utility retrieval coverage; privacy-safe `pg_hba` topic preservation; bounded second-query search behavior and canonical `pg_hba.conf` spelling. Earlier failed reports are retained.
-- Study guide and single blog draft written after the final functional matrix passed: [study guide](study-guide.md), [blog](blog.md).
+- Study guide written after the final functional matrix passed: [study guide](study-guide.md).
 
 - Chat-first correction: persistent conversations, bounded same-thread follow-up resolution, fresh retrieval and citations per turn, idempotent sends, pending-turn guards, latest-turn retry, and secondary knowledge/review views. See [chat architecture and acceptance](chat.md).
 - Live two-turn HTTP/Codex chat passed against frozen official sources: 100.7 seconds / three claims, then 64.5 seconds / two claims with version-16 sources. First answer and evidence preserved. Functional evidence only, not an accuracy or latency benchmark.

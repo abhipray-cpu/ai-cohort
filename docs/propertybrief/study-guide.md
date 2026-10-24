@@ -191,4 +191,4 @@ For reproducible frozen evaluation, use [data commands](../../data/propertybrief
 
 Can dense/conflict-heavy investigations reliably produce useful complete narratives? Can independently reviewed findings meet the provisional precision/recall targets? Does adaptive planning outperform a simpler checklist plus one-shot report? Does critique catch errors without rejecting supported prose? Does the old Windows laptop meet service/reboot/resource requirements? Does a buyer save enough active time to pay?
 
-These are experiments, not answers supplied by the architecture. The [single blog draft](blog.md) tells the implementation story; the [evaluation plan](data-and-evaluation.md) defines the outstanding quality/commercial work.
+These are experiments, not answers supplied by the architecture. The [evaluation plan](data-and-evaluation.md) defines the outstanding quality/commercial work.

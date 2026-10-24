@@ -50,7 +50,6 @@ campaign; authored tests and judge scores are not independent quality results.
 16. [Implementation map and TDD evidence](implementation-notes.md): actual code, safety regressions and explicit implementation decisions.
 17. [Actual-data validation log](real-data-validation.md): measured acquisition, mapping discrepancies and later run results.
 18. [Study guide](study-guide.md): concept-to-code walkthrough, actual-case traces, safe exercises and review questions.
-19. [Blog draft](blog.md): the product story, failed live run, TDD fixes and bounded successful validation.
 
 Planned stack: Python/FastAPI/Pydantic, React/TypeScript, an isolated SQLite store,
 durable serialized worker and installed-Codex provider port. Target host is the old

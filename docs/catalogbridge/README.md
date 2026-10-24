@@ -2,7 +2,7 @@
 
 **Latest, 18 October:** [local-routing redesign and validation](local-routing-validation-2026-10-18.md). Optional local review-draft scorer, profile-hash binding and UI are implemented; 476 Python tests and eight web tests/build pass. A frozen 600-pair offline challenge yields 101 local exits/one disagreement. The 60-pair live comparison stops on quota after 123 dispatches, with three new unknown liabilities; it is not eligible for a savings claim. The original savings, independent confidence and release gates remain open. Earlier measurements below are historical.
 
-Learning cadence: [study guide](study-guide.md) and [single blog article](blog.md). Both distinguish implemented mechanisms, measured evidence and unpassed acceptance gates.
+Learning cadence: [study guide](study-guide.md). The guide distinguishes implemented mechanisms, measured evidence and unpassed acceptance gates.
 
 **Latest, 18 October:** [timeout receipts and repeat-work cost control](receipts-and-repeat-work-2026-10-18.md). Timeout usage preservation, ambiguous-turn guards and durable sanitized receipts; opt-in exact-context draft reuse with UI/provenance and mandatory review. 455 Python tests, eight web tests/build. Three new live calls settle 20,355 tokens; two eligible repeats require zero new calls after worker restart. The original fresh-row savings gate and other release blockers remain open. Earlier paragraphs preserve historical measurements.
 
@@ -40,6 +40,6 @@ CatalogBridge is a supplier-catalog matching desk for electronics retailers and 
 13. [Implementation status](implementation-status.md): evidence versus plans and current blockers.
 14. [Dated source feasibility](source-feasibility-2026-10-17.md): what was inspected, not a validation report.
 
-Original design documents preserve targets where broader than this pilot. The [runbook](implementation-and-operations.md) and [local-routing amendment](local-routing-validation-2026-10-18.md) describe actual interfaces and limits. WDC resources are acquired and tested as recorded; no independently qualified automatic calibration or proven business savings exists. The larger 4,500/600 live campaign and independent adjudication remain incomplete. Earlier product business logic/data remain unchanged. The linked study guide/blog document these limitations rather than claiming acceptance.
+Original design documents preserve targets where broader than this pilot. The [runbook](implementation-and-operations.md) and [local-routing amendment](local-routing-validation-2026-10-18.md) describe actual interfaces and limits. WDC resources are acquired and tested as recorded; no independently qualified automatic calibration or proven business savings exists. The larger 4,500/600 live campaign and independent adjudication remain incomplete. Earlier product business logic/data remain unchanged. The linked study guide documents these limitations rather than claiming acceptance.
 
 Generation must use a port/adapter to the installed Codex CLI, not a direct product model API. The Windows laptop hosts the service; the CLI may still use remote inference. API token-price estimates must not be presented as subscription charges. If two genuine model choices or reliable usage telemetry cannot be verified, the corresponding concept remains blocked—not simulated into a pass.
