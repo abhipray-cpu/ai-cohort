@@ -1,4 +1,4 @@
-# AI Cohort — 12 Projects in 14 Days
+# AI Cohort — 12 Projects in 12 Days
 
 This repository contains a collection of production-minded AI products. Each product is independently runnable, while shared packages provide consistent contracts, local Codex execution, validation, observability, and deployment conventions.
 
