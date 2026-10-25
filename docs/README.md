@@ -2,6 +2,10 @@
 
 Each delivery pack contains scope, architecture, implementation order, source data, evaluation, UI, and release evidence. Plans and target thresholds are distinct from measured results.
 
+[Windows laptop deployment guide](windows-laptop-deployment.md): all twelve products,
+installed Codex, private configuration, protected Cloudflare routes, dependencies,
+startup-packaging gaps and target-host acceptance checks.
+
 | Day | Product | Delivery pack | Current stage |
 | --- | --- | --- | --- |
 | 1 | TenderLens: tender requirements and evidence review | [TenderLens](tenderlens/README.md) | Active implementation; release gates remain open |

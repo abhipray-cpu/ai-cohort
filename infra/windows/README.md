@@ -2,6 +2,10 @@
 
 Products run on the Windows laptop. Keep the Codex executable local and private; applications invoke it through `agent-core`.
 
+Start with the [portfolio deployment guide](../../docs/windows-laptop-deployment.md)
+for all twelve products, current installer coverage, Codex identity/compatibility,
+dependencies, Cloudflare protection and actual host-acceptance requirements.
+
 CaseCouncil (Day 9): `install-casecouncil.ps1 -RepoPath <repo> -Credential <limited account> [-Start]`
 packages separate API/worker startup tasks on loopback 8008. It refuses existing
 tasks and requires the Python workspace and frontend build. All tunnel paths need

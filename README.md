@@ -21,6 +21,9 @@ This repository contains a collection of production-minded AI products. Each pro
 
 ## Repository layout
 
+[Run the portfolio on the Windows laptop](docs/windows-laptop-deployment.md): setup,
+installed Codex, protected Cloudflare access, backups and deployment qualification.
+
 ```text
 apps/                 Independently deployable product applications
 packages/             Shared, versioned platform code
