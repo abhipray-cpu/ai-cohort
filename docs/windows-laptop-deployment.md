@@ -1,5 +1,12 @@
 # Run the portfolio on the Windows laptop
 
+Architecture update, 25 October 2026: the
+[root Codex handoff](../guide.md) now defines the agreed containerized target,
+private Windows Codex bridge and `orch1.sentiolus.in` gateway. It supersedes this
+guide's native/direct-loopback routing topology. Retain the instructions below
+for product configuration and native diagnostic reference, not as proof that the
+container target exists or has passed acceptance.
+
 Prepared 25 October 2026. Scope: all twelve products, installed Codex on the same
 Windows host, and protected Cloudflare access. This is a deployment runbook, **not
 evidence that the target laptop has passed deployment acceptance**.

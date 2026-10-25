@@ -21,6 +21,9 @@ This repository contains a collection of production-minded AI products. Each pro
 
 ## Repository layout
 
+[Windows Codex handoff: container deployment](guide.md): the current target for
+all twelve products, private host Codex bridge and `orch1.sentiolus.in` gateway.
+
 [Run the portfolio on the Windows laptop](docs/windows-laptop-deployment.md): setup,
 installed Codex, protected Cloudflare access, backups and deployment qualification.
 

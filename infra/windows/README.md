@@ -1,5 +1,10 @@
 # Windows service host
 
+The current container deployment target is defined in the
+[Windows Codex handoff](../../guide.md), including `orch1.sentiolus.in` and the
+private host bridge. The native startup packages below remain reference material,
+not an implemented container deployment.
+
 Products run on the Windows laptop. Keep the Codex executable local and private; applications invoke it through `agent-core`.
 
 Start with the [portfolio deployment guide](../../docs/windows-laptop-deployment.md)

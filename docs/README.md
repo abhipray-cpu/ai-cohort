@@ -2,6 +2,9 @@
 
 Each delivery pack contains scope, architecture, implementation order, source data, evaluation, UI, and release evidence. Plans and target thresholds are distinct from measured results.
 
+[Current Windows/container Codex handoff](../guide.md): agreed portfolio topology,
+`orch1.sentiolus.in`, TDD implementation order and target-host acceptance gates.
+
 [Windows laptop deployment guide](windows-laptop-deployment.md): all twelve products,
 installed Codex, private configuration, protected Cloudflare routes, dependencies,
 startup-packaging gaps and target-host acceptance checks.
